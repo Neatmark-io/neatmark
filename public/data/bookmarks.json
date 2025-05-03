@@ -1,0 +1,134 @@
+[
+    {
+        "type": "folder",
+        "title": "Bookmarks Bar",
+        "children": [
+            {
+                "type": "link",
+                "title": "Google",
+                "icon": "https://logo.clearbit.com/www.google.com",
+                "url": "https://www.google.com/"
+            },
+            {
+                "type": "link",
+                "title": "X",
+                "icon": "https://logo.clearbit.com/x.com",
+                "url": "https://x.com/"
+            },
+            {
+                "type": "link",
+                "title": "YouTube",
+                "icon": "https://logo.clearbit.com/www.youtube.com",
+                "url": "https://www.youtube.com/"
+            },
+            {
+                "type": "link",
+                "title": "instagram",
+                "icon": "https://logo.clearbit.com/www.instagram.com",
+                "url": "https://www.instagram.com/"
+            },
+            {
+                "type": "link",
+                "title": "Facebook",
+                "icon": "https://logo.clearbit.com/www.facebook.com",
+                "url": "https://www.facebook.com/"
+            },
+            {
+                "type": "folder",
+                "title": "Design",
+                "children": [
+                    {
+                        "type": "folder",
+                        "title": "Fonts",
+                        "children": [
+                            {
+                                "type": "link",
+                                "title": "Fonts Knowledge - Google Fonts",
+                                "icon": "https://logo.clearbit.com/fonts.google.com",
+                                "url": "https://fonts.google.com/knowledge"
+                            },
+                            {
+                                "type": "link",
+                                "title": "Font Meme: Fonts & Typography Resource",
+                                "icon": "https://logo.clearbit.com/fontmeme.com",
+                                "url": "https://fontmeme.com/"
+                            },
+                            {
+                                "type": "link",
+                                "title": "WhatTheFont Font Finder - Identify Fonts by Image",
+                                "icon": "https://logo.clearbit.com/www.myfonts.com",
+                                "url": "https://www.myfonts.com/pages/whatthefont"
+                            },
+                            {
+                                "type": "link",
+                                "title": "Fonts.com | Find, Buy & Download Best Fonts",
+                                "icon": "https://logo.clearbit.com/www.fonts.com",
+                                "url": "https://www.fonts.com/"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "folder",
+                        "title": "LOGO Design",
+                        "children": [
+                            {
+                                "type": "link",
+                                "title": "A beautiful library with SVG logos - Svgl",
+                                "icon": "https://logo.clearbit.com/svgl.app",
+                                "url": "https://svgl.app/"
+                            },
+                            {
+                                "type": "link",
+                                "title": "Simple Icons",
+                                "icon": "https://logo.clearbit.com/simpleicons.org",
+                                "url": "https://simpleicons.org/"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "folder",
+                "title": "Extensions",
+                "children": [
+                    {
+                        "type": "link",
+                        "title": "bookmark.style: stylish your visual web bookmark",
+                        "icon": "https://logo.clearbit.com/bookmark.style",
+                        "url": "https://bookmark.style/"
+                    }
+                ]
+            },
+            {
+                "type": "folder",
+                "title": "Programming",
+                "children": [
+                    {
+                        "type": "link",
+                        "title": "GitHub - langchain-ai/langchain: ⚡ Building applications with LLMs through composability ⚡",
+                        "icon": "https://logo.clearbit.com/github.com",
+                        "url": "https://github.com/langchain-ai/langchain"
+                    },
+                    {
+                        "type": "link",
+                        "title": "sourcegraph/awesome-code-ai: A list of AI coding tools (assistants, completions, refactoring, etc.)",
+                        "icon": "https://logo.clearbit.com/github.com",
+                        "url": "https://github.com/sourcegraph/awesome-code-ai"
+                    },
+                    {
+                        "type": "link",
+                        "title": "GitHub - ripienaar/free-for-dev: A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev",
+                        "icon": "https://logo.clearbit.com/github.com",
+                        "url": "https://github.com/ripienaar/free-for-dev"
+                    },
+                    {
+                        "type": "link",
+                        "title": "https://programming-idioms.org/all-idioms",
+                        "icon": "https://logo.clearbit.com/programming-idioms.org",
+                        "url": "https://programming-idioms.org/all-idioms"
+                    }
+                ]
+            }
+        ]
+    }
+]
