@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import FolderTree from "./FolderTree";
+import SearchBar from "./SearchBar";
+import ThemeToggle from "./ThemeToggle";
+import Header from "./Header";
+import { motion } from "framer-motion";
 
 const Sidebar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -22,16 +26,24 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div
-      className={`flex flex-col ${
-        isCollapsed ? "w-16" : "w-64"
-      } border-r border-gray-200 bg-zinc-100 dark:pintree-bg-gray-900 h-full font-semibold transition-width duration-300`}
-    >
-      <button onClick={toggleSidebar} className="p-4 text-lg">
-        {isCollapsed ? "☰" : "✖"}
-      </button>
-      {!isCollapsed && <FolderTree />}
-    </div>
+    <>
+      <button onClick={toggleSidebar} className={`sidebar-toggle-btn ${isCollapsed ? "collapsed" : ""}`} />
+
+      <motion.div
+        className={`sidebar ${isCollapsed ? "collapsed" : ""}`}
+        initial={{ x: "-100%" }}
+        animate={{ x: isCollapsed ? "-100%" : 0 }}
+      >
+        {!isCollapsed && (
+          <>
+            <Header />
+            <SearchBar />
+            <FolderTree />
+            <ThemeToggle />
+          </>
+        )}
+      </motion.div>
+    </>
   );
 };
 

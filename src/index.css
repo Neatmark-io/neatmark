@@ -1,25 +1,305 @@
+/* Import Google Fonts and Material Icons */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Icons");
 
+/* Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+/* Define custom CSS variables for fonts */
 :root {
-  --font-family-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji",
-    Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial,
+    sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  --font-family-icons: "Material Icons";
   --font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol",
     "Android Emoji", EmojiSymbols;
 }
 
+/* Base styles for the body element */
 body {
   margin: 0;
   font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply font-medium text-slate-700 dark:text-slate-400 bg-white dark:bg-slate-900;
 }
 
+/* Styles for code elements */
 code {
   font-family: var(--font-family-mono);
+}
+
+/*
+=============================
+  Containers
+=============================
+*/
+
+/* Container for the entire page */
+.page-container {
+  @apply flex h-screen;
+}
+
+/* Main content container */
+.main-container {
+  @apply flex-1 flex flex-col;
+}
+
+/*
+=============================
+  Side bar
+=============================
+*/
+
+/* Button to toggle the sidebar visibility on small screens */
+.sidebar-toggle-btn {
+  font-family: var(--font-family-icons);
+  @apply lg:hidden
+    fixed
+    top-4 left-4
+    z-50
+    text-6xl;
+}
+
+/* Icon for the sidebar toggle button when sidebar is collapsed */
+.sidebar-toggle-btn.collapsed::before {
+  content: "menu";
+}
+
+/* Icon for the sidebar toggle button when sidebar is not collapsed */
+.sidebar-toggle-btn:not(.collapsed)::before {
+  content: "close";
+}
+
+/* Sidebar container */
+.sidebar {
+  @apply fixed lg:relative
+    h-full w-64 max-lg:w-full
+    inset-y-0 left-0
+    flex flex-col
+    bg-zinc-100 dark:bg-gray-800
+    lg:border-r border-slate-900/10 dark:border-slate-300/10
+    max-lg:transform max-lg:translate-x-0 max-lg:transition-transform max-lg:duration-100 max-lg:ease-in-out;
+}
+
+/* Sidebar when collapsed */
+.sidebar.collapsed {
+  @apply -translate-x-full;
+}
+
+/* Sidebar when not collapsed */
+.sidebar:not(.collapsed) {
+  @apply translate-x-0;
+}
+
+/*
+=============================
+  Header
+=============================
+*/
+
+/* Header section within the sidebar */
+.sidebar .header {
+  @apply flex justify-between items-center
+    p-4;
+}
+
+/* Logo within the sidebar header */
+.sidebar .header .logo {
+  @apply h-10 w-auto;
+}
+
+/*
+=============================
+  Search bar
+=============================
+*/
+
+/* Search bar container within the sidebar */
+.sidebar .searchbar {
+  @apply relative
+    p-4;
+}
+
+/* Input field within the search bar */
+.sidebar .searchbar input {
+  @apply w-full
+    px-4 py-2
+    border border-gray-200 dark:border-gray-800 rounded-md
+    bg-gray-50 dark:bg-gray-900;
+}
+
+/* Button within the search bar */
+.sidebar .searchbar button {
+  font-family: var(--font-family-icons);
+  @apply absolute
+    right-6 top-4
+    py-2
+    text-lg text-gray-500;
+}
+
+/* Icon for the search bar button */
+.sidebar .searchbar button::before {
+  content: "close";
+}
+
+/*
+=============================
+  Folders tree
+=============================
+*/
+
+/* Folder tree container within the sidebar */
+.sidebar .folder-tree {
+  @apply py-2 pr-4
+    text-2xl lg:text-sm;
+}
+
+/* Folder item within the folder tree */
+.sidebar .folder-tree .folder {
+  @apply ml-4;
+}
+
+/* Title of the folder item */
+.sidebar .folder-tree .folder .title {
+  @apply flex items-center cursor-pointer p-2 rounded-md;
+}
+
+/* Selected folder item */
+.sidebar .folder-tree .folder.selected > .title {
+  @apply bg-zinc-200 dark:bg-gray-900;
+}
+
+/* Hover state for folder item */
+.sidebar .folder-tree .folder .title {
+  @apply hover:bg-gray-200 dark:hover:bg-gray-900;
+}
+
+/* Icon container within the folder item */
+.sidebar .folder-tree .folder .title .icon {
+  @apply mr-2;
+}
+
+/* Default icon for folder items */
+.sidebar .folder-tree .folder .title .icon.default {
+  font-family: var(--font-family-icons);
+}
+
+/* Icon for default folder items */
+.sidebar .folder-tree .folder .title .icon.default:before {
+  content: "folder";
+}
+
+/* Icon for selected folder items */
+.sidebar .folder-tree .folder.selected > .title .icon.default:before {
+  content: "folder_open";
+}
+
+/*
+=============================
+  Theme toggle
+=============================
+*/
+
+/* Theme toggle button container */
+.theme-toggle {
+  font-family: var(--font-family-icons);
+  @apply absolute bottom-2
+    min-w-full
+    flex justify-center items-center;
+}
+
+/* Theme toggle button */
+.theme-toggle button {
+  @apply px-4 py-2
+    rounded-md
+    text-3xl lg:text-lg text-slate-700 dark:text-slate-400;
+}
+
+/* Selected theme toggle button */
+.theme-toggle button.selected {
+  @apply bg-gray-200 dark:bg-slate-900;
+}
+
+/*
+=============================
+  Card Grid
+=============================
+*/
+
+/* Grid container for cards */
+.card-grid {
+  @apply p-4
+    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+}
+
+/*
+=============================
+  Bookmark Card
+=============================
+*/
+
+/* Bookmark card container */
+.bookmark-card {
+  @apply p-6 rounded-lg
+    flex items-center
+    shadow hover:shadow-lg transition
+  bg-white dark:bg-gray-800 hover:bg-gray-100 hover:dark:bg-gray-700
+    cursor-pointer;
+}
+
+/* Icon within the bookmark card */
+.bookmark-card .icon {
+  @apply w-12 h-12 mb-2;
+}
+
+/* Information container within the bookmark card */
+.bookmark-card .info {
+  @apply flex flex-col overflow-hidden;
+}
+
+/* Title within the bookmark card */
+.bookmark-card .title {
+  @apply mb-2 text-lg font-bold;
+}
+
+/* URL within the bookmark card */
+.bookmark-card .url {
+  @apply text-xs text-gray-400 dark:text-gray-600;
+}
+
+/*
+=============================
+  Folder Card
+=============================
+*/
+
+/* Folder card container */
+.folder-card {
+  @apply p-4 rounded-lg
+    flex flex-col justify-center items-center
+    hover:shadow-lg cursor-pointer;
+}
+
+/* Icon within the folder card */
+.folder-card .icon {
+  font-family: var(--font-family-icons);
+  @apply text-4xl mb-2;
+}
+
+/* Icon for the folder card */
+.folder-card .icon:before {
+  content: "folder";
+}
+
+/* Hover state for the folder card icon */
+.folder-card:hover .icon:before {
+  content: "folder_open";
+}
+
+/* Title within the folder card */
+.folder-card .title {
+  @apply text-sm;
 }

@@ -10,36 +10,16 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <div className="relative">
-      <button className="p-2 text-gray-700 dark:text-gray-300">
-        {theme === "light" ? "☀️" : theme === "dark" ? "🌙" : "⚙️"}
+    <div className="theme-toggle">
+      <button onClick={() => handleThemeChange("system")} className={`${theme === "system" ? "selected" : ""}`}>
+        monitor
       </button>
-      <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg z-10">
-        <button
-          onClick={() => handleThemeChange("system")}
-          className={`block w-full text-left px-4 py-2 text-sm ${
-            theme === "system" ? "bg-gray-200 dark:bg-gray-700" : ""
-          }`}
-        >
-          System
-        </button>
-        <button
-          onClick={() => handleThemeChange("light")}
-          className={`block w-full text-left px-4 py-2 text-sm ${
-            theme === "light" ? "bg-gray-200 dark:bg-gray-700" : ""
-          }`}
-        >
-          Light
-        </button>
-        <button
-          onClick={() => handleThemeChange("dark")}
-          className={`block w-full text-left px-4 py-2 text-sm ${
-            theme === "dark" ? "bg-gray-200 dark:bg-gray-700" : ""
-          }`}
-        >
-          Dark
-        </button>
-      </div>
+      <button onClick={() => handleThemeChange("light")} className={`${theme === "light" ? "selected" : ""}`}>
+        light_mode
+      </button>
+      <button onClick={() => handleThemeChange("dark")} className={`${theme === "dark" ? "selected" : ""}`}>
+        dark_mode
+      </button>
     </div>
   );
 };

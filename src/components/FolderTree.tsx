@@ -12,21 +12,20 @@ const FolderTree: React.FC = () => {
   };
 
   const renderFolder = (folder: Folder) => (
-    <div key={folder.title} className="ml-4">
-      <div
-        className={`flex items-center cursor-pointer p-2 rounded ${
-          selectedFolder === folder.title ? "bg-zinc-200 dark:bg-gray-50" : "hover:bg-gray-50 dark:hover:bg-gray-700"
-        }`}
-        onClick={() => handleFolderClick(folder)}
-      >
-        <span className="mr-2">{folder.icon || "📁"}</span>
+    <li key={folder.title} className={`folder ${selectedFolder === folder.title ? "selected" : ""}`}>
+      <div className="title" onClick={() => handleFolderClick(folder)}>
+        <span className={`icon ${folder.icon ? "" : "default"}`}>{folder.icon}</span>
         <span>{folder.title}</span>
       </div>
-      {folder.children.map((child) => child.type === "folder" && renderFolder(child))}
-    </div>
+      <ul>{folder.children.map((child) => child.type === "folder" && renderFolder(child))}</ul>
+    </li>
   );
 
-  return <div className="p-4">{bookmarks.map((item) => item.type === "folder" && renderFolder(item))}</div>;
+  return (
+    <div className="folder-tree">
+      <ul>{bookmarks.map((item) => item.type === "folder" && renderFolder(item))}</ul>
+    </div>
+  );
 };
 
 export default FolderTree;
