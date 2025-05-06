@@ -22,9 +22,9 @@ const FolderTree: React.FC = () => {
   );
 
   return (
-    <div className="folder-tree">
+    <nav className="folder-tree">
       <ul>{bookmarks.map((item) => item.type === "folder" && renderFolder(item))}</ul>
-    </div>
+    </nav>
   );
 };
 
