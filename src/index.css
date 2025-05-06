@@ -170,14 +170,9 @@ code {
   @apply flex items-center cursor-pointer p-2 rounded-md;
 }
 
-/* Selected folder item */
-.sidebar .folder-tree .folder.selected > .title {
+/* Selected & Hover state for folder item*/
+.sidebar .folder-tree .folder.selected > .title, .sidebar .folder-tree .folder > .title:hover {
   @apply bg-zinc-200 dark:bg-gray-900;
-}
-
-/* Hover state for folder item */
-.sidebar .folder-tree .folder .title {
-  @apply hover:bg-gray-200 dark:hover:bg-gray-900;
 }
 
 /* Icon container within the folder item */
@@ -220,11 +215,12 @@ code {
 .theme-toggle button {
   @apply px-4 py-2
     rounded-md
-    text-3xl lg:text-lg text-slate-700 dark:text-slate-400;
+    text-3xl lg:text-lg text-slate-700 dark:text-slate-400
+    cursor-pointer;
 }
 
-/* Selected theme toggle button */
-.theme-toggle button.selected {
+/* Selected & Hover state for theme toggle button */
+.theme-toggle button.selected, .theme-toggle button:hover {
   @apply bg-gray-200 dark:bg-slate-900;
 }
 
