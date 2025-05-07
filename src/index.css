@@ -330,5 +330,5 @@ code {
 
 /* Title within the folder card */
 .folder-card .title {
-  @apply text-sm;
+  @apply text-sm text-center;
 }
