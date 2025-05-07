@@ -21,7 +21,7 @@ export const BookmarkProvider: React.FC<React.PropsWithChildren> = ({ children }
   const parseBookmarks = (text: string) => {
     const lines = text.split("\n");
     const stack = [];
-    let currentFolder = { type: "folder", children: [] };
+    let currentFolder = { type: "folder", title: "", children: [] } as Folder;
     let folderName = "Bookmarks";
     let attributes;
 
@@ -42,7 +42,7 @@ export const BookmarkProvider: React.FC<React.PropsWithChildren> = ({ children }
           ...attributes,
           title: folderName,
           children: [],
-        };
+        } as Folder;
         currentFolder.children.push(newFolder);
         stack.push(newFolder);
         currentFolder = newFolder;
@@ -62,11 +62,10 @@ export const BookmarkProvider: React.FC<React.PropsWithChildren> = ({ children }
 
           currentFolder.children.push({
             type: "link",
-            addDate: null,
             title: linkMatch[3],
             icon: attributes["icon"],
             url: linkMatch[1],
-          });
+          } as Bookmark);
         }
       }
     }
@@ -76,12 +75,12 @@ export const BookmarkProvider: React.FC<React.PropsWithChildren> = ({ children }
 
   // Helper function to convert snake_case to camelCase
   const toCamelCase = (snakeCaseStr: string) => {
-    return snakeCaseStr.toLowerCase().replace(/(_\w)/g, (match: string[]) => match[1].toUpperCase());
+    return snakeCaseStr.toLowerCase().replace(/(_\w)/g, (substring) => substring.toUpperCase());
   };
 
   // Helper function to parse attributes from a tag
   const parseAttributes = (attrText: string) => {
-    const attributes = {};
+    const attributes = Object.create({});
     const attrMatches = attrText.matchAll(/(\w+)="([^"]*)"/g);
     for (const match of attrMatches) {
       const camelCaseName = toCamelCase(match[1]);

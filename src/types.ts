@@ -14,7 +14,7 @@ export interface Folder {
   type: "folder";
   title: string;
   children: (Folder | Bookmark)[];
-  icon: string; // Emoji
+  icon?: string; // Emoji
 }
 
 export interface AppData {
