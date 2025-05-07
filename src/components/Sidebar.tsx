@@ -7,7 +7,7 @@ import SearchBar from "./SearchBar";
 import ThemeToggle from "./ThemeToggle";
 
 const Sidebar: React.FC = () => {
-  const { isSidebarCollapsed: isCollapsed } = useContext(ThemeContext)!;
+  const { isSidebarCollapsed: isCollapsed, setSidebarCollapsed } = useContext(ThemeContext)!;
 
   return (
     <>
@@ -21,6 +21,7 @@ const Sidebar: React.FC = () => {
             <header className="header">
               <Logo />
             </header>
+            <button onClick={() => setSidebarCollapsed(true)} className="sidebar-toggle-btn" />
             <SearchBar />
             <FolderTree />
             <ThemeToggle />

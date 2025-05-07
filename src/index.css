@@ -41,7 +41,7 @@ code {
 
 /* Container for the entire page */
 .page-container {
-  @apply flex h-screen max-xl:flex-col xl:flex-row;
+  @apply flex h-screen flex-col xl:flex-row;
 }
 
 /* Main content container */
@@ -51,7 +51,7 @@ code {
 
 /*
 =============================
-  Side bar
+  Nav bar
 =============================
 */
 .navbar {
@@ -64,19 +64,13 @@ code {
   font-family: var(--font-family-icons);
   @apply xl:hidden
     fixed
-    top-2 left-2
-    z-50
-    text-6xl;
+    top-3 left-3 sm:top-2 sm:left-2 lg:top-4 lg:left-4
+    text-4xl sm:text-6xl;
 }
 
 /* Icon for the sidebar toggle button when sidebar is collapsed */
-.navbar-toggle-btn.collapsed::before {
+.navbar-toggle-btn::before {
   content: "menu";
-}
-
-/* Icon for the sidebar toggle button when sidebar is not collapsed */
-.navbar-toggle-btn:not(.collapsed)::before {
-  content: "close";
 }
 
 .navbar .app-logo {
@@ -94,10 +88,12 @@ code {
   @apply fixed xl:relative
     h-full w-full xl:w-64
     inset-y-0 left-0
+    z-50 xl:z-auto
+    px-2 sm:px-8 xl:px-0
     flex flex-col
     bg-zinc-100 dark:bg-gray-800
     xl:border-r border-slate-900/10 dark:border-slate-300/10
-    max-xl:transform max-xl:translate-x-0 max-xl:transition-transform max-xl:duration-100 max-xl:ease-in-out;
+    transform translate-x-0 transition-transform duration-100 ease-in-out;
 }
 
 /* Sidebar when collapsed */
@@ -108,6 +104,20 @@ code {
 /* Sidebar when not collapsed */
 .sidebar:not(.collapsed) {
   @apply translate-x-0;
+}
+
+/* Button to toggle the sidebar visibility on small screens */
+.sidebar-toggle-btn {
+  font-family: var(--font-family-icons);
+  @apply xl:hidden
+    fixed
+    z-50
+    top-4 left-1 sm:top-3 sm:left-3 lg:top-5 lg:left-4
+    text-4xl sm:text-6xl;
+}
+/* Icon for the sidebar toggle button when sidebar is not collapsed */
+.sidebar-toggle-btn::before {
+  content: "close";
 }
 
 .sidebar .app-logo {
@@ -122,9 +132,10 @@ code {
 
 /* Header section within the sidebar */
 .app-logo {
-  @apply h-16
+  @apply h-16 sm:h-20 lg:h-24 xl:h-16
     flex shrink-0 items-center
-    p-4 font-extrabold text-2xl dark:text-white;
+    p-4
+    font-extrabold text-2xl sm:text-4xl lg:text-5xl xl:text-2xl;
 }
 
 /* Logo within the sidebar header */
@@ -142,7 +153,8 @@ code {
 /* Search bar container within the sidebar */
 .searchbar {
   @apply relative
-    p-4;
+    max-sm:mt-4 px-8 sm:px-16 sm:py-4 lg:py-6 xl:p-4
+    sm:text-4xl xl:text-base;
 }
 
 /* Input field within the search bar */
@@ -177,8 +189,8 @@ code {
 /* Folder tree container within the sidebar */
 .folder-tree {
   @apply overflow-auto
-    py-2 pr-4
-    text-2xl xl:text-sm;
+    py-2 sm:px-8 xl:px-0 xl:pr-4
+    sm:text-4xl xl:text-sm;
 }
 
 /* Folder item within the folder tree */
