@@ -1,8 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { motion } from "framer-motion";
 import { SearchContext } from "../context/SearchContext";
-import BookmarkCard from "./BookmarkCard";
-import FolderCard from "./FolderCard";
 import { Folder } from "../types";
 
 const AnimatedCardGrid: React.FC = () => {
@@ -18,8 +16,12 @@ const AnimatedCardGrid: React.FC = () => {
     <motion.div className="card-grid" layout>
       {folders.length > 0 && (
         <div className="folder-grid">
-          {folders.map((item) => (
-            <FolderCard key={item.title} folder={item} onClick={() => handleFolderClick(item)} />
+          {folders.map((folder) => (
+            // FolderCard
+            <div key={folder.title} className="folder-card" onClick={() => handleFolderClick(folder)}>
+              <span className="icon" />
+              <h3 className="title">{folder.title}</h3>
+            </div>
           ))}
         </div>
       )}
@@ -28,8 +30,21 @@ const AnimatedCardGrid: React.FC = () => {
 
       {bookmarks.length > 0 && (
         <div className="bookmark-grid">
-          {bookmarks.map((item) => (
-            <BookmarkCard key={item.url} bookmark={item} />
+          {bookmarks.map((bookmark) => (
+            // BookmarkCard
+            <a key={bookmark.url} href={bookmark.url} target="_blank" rel="noopener noreferrer">
+              <div className="bookmark-card">
+                {!bookmark.icon && <span className="icon" />}
+                {bookmark.icon && <img src={bookmark.icon} alt={bookmark.title} className="icon-image" />}
+
+                <div className="info">
+                  <h3 className="title">{bookmark.title}</h3>
+                  <p className="url">{bookmark.url}</p>
+                </div>
+
+                {/* {bookmark.meta?.description && <p className="text-sm mt-2">{bookmark.meta.description}</p>} */}
+              </div>
+            </a>
           ))}
         </div>
       )}
