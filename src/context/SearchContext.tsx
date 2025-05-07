@@ -23,8 +23,8 @@ export const SearchProvider: React.FC<React.PropsWithChildren> = ({ children }) 
       return items.reduce<(Folder | Bookmark)[]>((acc, item) => {
         if (item.type === "folder") {
           const filteredChildren = filterItems(item.children);
-          if (filteredChildren.length > 0 || item.title.toLowerCase().includes(searchQuery.toLowerCase())) {
-            acc.push({ ...item, children: filteredChildren });
+          if (filteredChildren.length > 0) {
+            filteredChildren.map((item) => acc.push(item));
           }
         } else if (
           item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -36,8 +36,9 @@ export const SearchProvider: React.FC<React.PropsWithChildren> = ({ children }) 
       }, []);
     };
 
-    const getFolderItems = (folder: Folder | null): (Folder | Bookmark)[] => {
-      if (!folder) return bookmarks;
+    const getFolderItems = (folderTitle: string | null): (Folder | Bookmark)[] => {
+      if (!folderTitle) return bookmarks;
+
       const findFolder = (folders: (Folder | Bookmark)[], title: string): Folder | null => {
         for (const item of folders) {
           if (item.type === "folder" && item.title === title) {
@@ -49,14 +50,12 @@ export const SearchProvider: React.FC<React.PropsWithChildren> = ({ children }) 
         }
         return null;
       };
-      const selected = findFolder(bookmarks, folder.title);
+
+      const selected = findFolder(bookmarks, folderTitle);
       return selected ? selected.children : [];
     };
 
-    const folderItems = getFolderItems(
-      selectedFolder ? { title: selectedFolder, type: "folder", children: [], icon: "" } : null
-    );
-    const filtered = searchQuery ? filterItems(folderItems) : folderItems;
+    const filtered = searchQuery ? filterItems(bookmarks) : getFolderItems(selectedFolder);
     setFilteredBookmarks(filtered);
   }, [searchQuery, selectedFolder, bookmarks]);
 
