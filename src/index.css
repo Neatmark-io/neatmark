@@ -261,14 +261,26 @@ code {
     cursor-pointer;
 }
 
-/* Icon within the bookmark card */
+/* Icon within the folder card */
 .bookmark-card .icon {
+  font-family: var(--font-family-icons);
+  font-variation-settings: var(--font-icons-settings-filled);
+  @apply text-4xl mb-2;
+}
+
+/* Icon for the folder card */
+.bookmark-card .icon:before {
+  content: "language";
+}
+
+/* Icon within the bookmark card */
+.bookmark-card .icon-image {
   @apply w-12 h-12 mb-2;
 }
 
 /* Information container within the bookmark card */
 .bookmark-card .info {
-  @apply flex flex-col overflow-hidden;
+  @apply ml-4 flex flex-col overflow-hidden;
 }
 
 /* Title within the bookmark card */

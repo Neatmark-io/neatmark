@@ -9,7 +9,7 @@ interface FolderCardProps {
 const FolderCard: React.FC<FolderCardProps> = ({ folder, onClick }) => {
   return (
     <div className="folder-card" onClick={onClick}>
-      <span className="icon">{folder.icon}</span>
+      <span className="icon" />
       <h3 className="title">{folder.title}</h3>
     </div>
   );
