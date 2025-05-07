@@ -104,13 +104,18 @@ code {
 
 /* Header section within the sidebar */
 .sidebar .header {
-  @apply flex justify-between items-center
+  @apply h-16
+    flex shrink-0 items-center
     p-4;
 }
 
 /* Logo within the sidebar header */
 .sidebar .header .logo {
   @apply h-10 w-auto;
+}
+/* Title within the sidebar header */
+.sidebar .header a {
+  @apply ml-2 font-extrabold text-2xl dark:text-white;
 }
 
 /*

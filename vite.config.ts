@@ -13,10 +13,12 @@ export default defineConfig({
     }),
     VitePWA({
       manifest: {
-        name: "NeatMark",
-        short_name: "NeatMark",
+        name: "Neatmark",
+        short_name: "Neatmark",
         description: "A Notion-inspired bookmark manager.",
-        theme_color: "#ffffff",
+        display: "standalone",
+        theme_color: "#f4f4f5",
+        background_color: "#f4f4f5",
         icons: [
           {
             src: "favicon.ico",
@@ -27,11 +29,13 @@ export default defineConfig({
             src: "logo192.png",
             sizes: "192x192",
             type: "image/png",
+            purpose: "maskable",
           },
           {
             src: "logo512.png",
             sizes: "512x512",
             type: "image/png",
+            purpose: "maskable",
           },
         ],
       },
