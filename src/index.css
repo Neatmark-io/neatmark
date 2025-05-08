@@ -56,7 +56,8 @@ code {
 */
 .navbar {
   @apply xl:hidden relative w-full
-    flex flex-row;
+    flex flex-row
+    shadow;
 }
 
 /* Button to toggle the sidebar visibility on small screens */
