@@ -48,7 +48,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: "/data/bookmarks.html",
+            urlPattern: "data/bookmarks.html",
             handler: "CacheFirst",
           },
         ],
