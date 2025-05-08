@@ -16,15 +16,11 @@ const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
         initial={{ x: "-100%" }}
         animate={{ x: isCollapsed ? "-100%" : 0 }}
       >
-        {!isCollapsed && (
-          <>
-            <button onClick={() => setSidebarCollapsed(true)} className="sidebar-toggle-btn" />
-            <Logo />
-            <SearchBar />
-            <FolderTree />
-            <ThemeToggle />
-          </>
-        )}
+        <button onClick={() => setSidebarCollapsed(true)} className="sidebar-toggle-btn" />
+        <Logo />
+        <SearchBar />
+        <FolderTree />
+        <ThemeToggle />
       </motion.aside>
       {children}
     </>
