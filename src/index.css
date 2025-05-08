@@ -87,7 +87,7 @@ code {
 /* Sidebar container */
 .sidebar {
   @apply fixed xl:relative
-    h-full w-full xl:w-64
+    h-full w-full xl:w-72
     inset-y-0 left-0
     z-50 xl:z-auto
     px-2 sm:px-8 xl:px-0
@@ -155,6 +155,7 @@ code {
 .searchbar {
   @apply relative
     max-sm:mt-4 px-8 sm:px-16 sm:py-4 lg:py-6 xl:p-4
+    border-b-2
     sm:text-4xl xl:text-base;
 }
 
@@ -190,8 +191,8 @@ code {
 /* Folder tree container within the sidebar */
 .folder-tree {
   @apply overflow-auto
-    py-2 sm:px-8 xl:px-0 xl:pr-4
-    sm:text-4xl xl:text-sm;
+    py-2 px-4 sm:px-8 xl:px-0 xl:pr-4
+    text-xl sm:text-4xl xl:text-base;
 }
 
 /* Folder item within the folder tree */
@@ -201,7 +202,10 @@ code {
 
 /* Title of the folder item */
 .folder-tree .folder .title {
-  @apply flex items-center cursor-pointer p-2 rounded-md;
+  @apply flex items-center
+    cursor-pointer
+    p-1.5 md:p-4 xl:p-1.5
+    rounded-md;
 }
 
 /* Selected & Hover state for folder item*/
@@ -242,8 +246,8 @@ code {
   font-family: var(--font-family-icons);
   font-variation-settings: var(--font-icons-settings);
   @apply relative bottom-0
-    h-16 min-w-full
-    py-2
+    min-w-full
+    py-2 lg:py-4 xl:py-2
     flex justify-center items-center;
 }
 
@@ -251,7 +255,7 @@ code {
 .theme-toggle button {
   @apply px-4 py-2
     rounded-md
-    text-3xl lg:text-lg text-slate-700 dark:text-slate-400
+    text-3xl lg:text-5xl xl:text-lg text-slate-700 dark:text-slate-400
     cursor-pointer;
 }
 
