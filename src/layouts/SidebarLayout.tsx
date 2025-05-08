@@ -5,12 +5,13 @@ import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
 import { BookmarkContext } from "../context/BookmarkContext";
 import { SearchContext } from "../context/SearchContext";
-import { Folder, Theme } from "../types";
+import { Folder } from "../types";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { bookmarks } = useContext(BookmarkContext)!;
   const { selectedFolder, setSelectedFolder } = useContext(SearchContext)!;
-  const { theme, setTheme, isSidebarCollapsed: isCollapsed, setSidebarCollapsed } = useContext(ThemeContext)!;
+  const { isSidebarCollapsed: isCollapsed, setSidebarCollapsed } = useContext(ThemeContext)!;
 
   const handleFolderClick = (folder: Folder) => {
     setSelectedFolder(folder.title);
@@ -25,10 +26,6 @@ const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
       <ul>{folder.children.map((child) => child.type === "folder" && renderFolder(child))}</ul>
     </li>
   );
-
-  const handleThemeChange = (newTheme: Theme) => {
-    setTheme(newTheme);
-  };
 
   return (
     <>
@@ -48,18 +45,7 @@ const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
               <ul>{bookmarks.map((item) => item.type === "folder" && renderFolder(item))}</ul>
             </nav>
 
-            {/* ThemeToggle */}
-            <div className="theme-toggle">
-              <button onClick={() => handleThemeChange("system")} className={`${theme === "system" ? "selected" : ""}`}>
-                monitor
-              </button>
-              <button onClick={() => handleThemeChange("light")} className={`${theme === "light" ? "selected" : ""}`}>
-                light_mode
-              </button>
-              <button onClick={() => handleThemeChange("dark")} className={`${theme === "dark" ? "selected" : ""}`}>
-                dark_mode
-              </button>
-            </div>
+            <ThemeToggle />
           </>
         )}
       </motion.aside>
