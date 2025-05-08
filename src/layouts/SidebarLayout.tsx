@@ -6,8 +6,8 @@ import SearchBar from "../components/SearchBar";
 import ThemeToggle from "../components/ThemeToggle";
 import { ThemeContext } from "../context/ThemeContext";
 
-const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { isSidebarCollapsed: isCollapsed, setSidebarCollapsed } = useContext(ThemeContext)!;
+const SidebarLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const { isSidebarCollapsed: isCollapsed, hideSidebar } = useContext(ThemeContext)!;
 
   return (
     <>
@@ -16,7 +16,7 @@ const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
         initial={{ x: "-100%" }}
         animate={{ x: isCollapsed ? "-100%" : 0 }}
       >
-        <button onClick={() => setSidebarCollapsed(true)} className="sidebar-toggle-btn" />
+        <button onClick={hideSidebar} className="sidebar-toggle-btn" />
         <Logo />
         <SearchBar />
         <FolderTree />
@@ -27,4 +27,4 @@ const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default Sidebar;
+export default SidebarLayout;

@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import Logo from "../components/Logo";
 
-const Navbar: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { setSidebarCollapsed } = useContext(ThemeContext)!;
+const NavbarLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+  const { showSidebar } = useContext(ThemeContext)!;
 
   return (
     <>
       <header className="navbar">
-        <button onClick={() => setSidebarCollapsed(false)} className="navbar-toggle-btn" />
+        <button onClick={showSidebar} className="navbar-toggle-btn" />
         <Logo />
       </header>
       {children}
@@ -16,4 +16,4 @@ const Navbar: React.FC<React.PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default Navbar;
+export default NavbarLayout;

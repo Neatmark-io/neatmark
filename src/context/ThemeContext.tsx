@@ -5,7 +5,8 @@ interface ThemeContextProps {
   theme: Theme;
   setTheme: (theme: Theme) => void;
   isSidebarCollapsed: boolean;
-  setSidebarCollapsed: (bool: boolean) => void;
+  hideSidebar: () => void;
+  showSidebar: () => void;
 }
 
 export const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
@@ -35,7 +36,7 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
 
   useEffect(() => {
     const handleResize = () => {
-      setSidebarCollapsed(isMobile); // Collapse on mobile and tablet
+      setSidebarCollapsed(isMobile()); // Collapse on mobile and tablet
     };
 
     handleResize(); // Initial check
@@ -46,8 +47,17 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     };
   }, []);
 
+  const hideSidebar = () => {
+    if (isMobile()) {
+      setSidebarCollapsed(true);
+    }
+  };
+  const showSidebar = () => {
+    setSidebarCollapsed(false);
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, isSidebarCollapsed, setSidebarCollapsed }}>
+    <ThemeContext.Provider value={{ theme, setTheme, isSidebarCollapsed, hideSidebar, showSidebar }}>
       {children}
     </ThemeContext.Provider>
   );

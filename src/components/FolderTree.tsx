@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import { BookmarkContext } from "../context/BookmarkContext";
 import { SearchContext } from "../context/SearchContext";
+import { ThemeContext } from "../context/ThemeContext";
 import { Folder } from "../types";
 
 const FolderTree: React.FC = () => {
   const { bookmarks } = useContext(BookmarkContext)!;
   const { selectedFolder, setSelectedFolder } = useContext(SearchContext)!;
+  const { hideSidebar } = useContext(ThemeContext)!;
 
   const handleFolderClick = (folder: Folder) => {
     setSelectedFolder(folder.title);
+    hideSidebar();
   };
 
   const renderFolder = (folder: Folder) => (
