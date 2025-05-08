@@ -1,31 +1,13 @@
 import { motion } from "framer-motion";
 import React, { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import FolderTree from "../components/FolderTree";
 import Logo from "../components/Logo";
 import SearchBar from "../components/SearchBar";
-import { BookmarkContext } from "../context/BookmarkContext";
-import { SearchContext } from "../context/SearchContext";
-import { Folder } from "../types";
 import ThemeToggle from "../components/ThemeToggle";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { bookmarks } = useContext(BookmarkContext)!;
-  const { selectedFolder, setSelectedFolder } = useContext(SearchContext)!;
   const { isSidebarCollapsed: isCollapsed, setSidebarCollapsed } = useContext(ThemeContext)!;
-
-  const handleFolderClick = (folder: Folder) => {
-    setSelectedFolder(folder.title);
-  };
-
-  const renderFolder = (folder: Folder) => (
-    <li key={folder.title} className={`folder ${selectedFolder === folder.title ? "selected" : ""}`}>
-      <div className="title" onClick={() => handleFolderClick(folder)}>
-        <span className={`icon ${folder.icon ? "" : "default"}`}>{folder.icon}</span>
-        <span>{folder.title}</span>
-      </div>
-      <ul>{folder.children.map((child) => child.type === "folder" && renderFolder(child))}</ul>
-    </li>
-  );
 
   return (
     <>
@@ -39,12 +21,7 @@ const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
             <button onClick={() => setSidebarCollapsed(true)} className="sidebar-toggle-btn" />
             <Logo />
             <SearchBar />
-
-            {/* FolderTree */}
-            <nav className="folder-tree">
-              <ul>{bookmarks.map((item) => item.type === "folder" && renderFolder(item))}</ul>
-            </nav>
-
+            <FolderTree />
             <ThemeToggle />
           </>
         )}
