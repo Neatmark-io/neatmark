@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import Logo from "./Logo";
-import SearchBar from "./SearchBar";
+import Logo from "../components/Logo";
+import SearchBar from "../components/SearchBar";
 import { BookmarkContext } from "../context/BookmarkContext";
 import { SearchContext } from "../context/SearchContext";
 import { Folder, Theme } from "../types";
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { bookmarks } = useContext(BookmarkContext)!;
   const { selectedFolder, setSelectedFolder } = useContext(SearchContext)!;
   const { theme, setTheme, isSidebarCollapsed: isCollapsed, setSidebarCollapsed } = useContext(ThemeContext)!;
@@ -32,7 +32,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <motion.div
+      <motion.aside
         className={`sidebar ${isCollapsed ? "collapsed" : ""}`}
         initial={{ x: "-100%" }}
         animate={{ x: isCollapsed ? "-100%" : 0 }}
@@ -40,9 +40,7 @@ const Sidebar: React.FC = () => {
         {!isCollapsed && (
           <>
             <button onClick={() => setSidebarCollapsed(true)} className="sidebar-toggle-btn" />
-
             <Logo />
-
             <SearchBar />
 
             {/* FolderTree */}
@@ -64,7 +62,8 @@ const Sidebar: React.FC = () => {
             </div>
           </>
         )}
-      </motion.div>
+      </motion.aside>
+      {children}
     </>
   );
 };

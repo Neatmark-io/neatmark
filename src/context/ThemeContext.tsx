@@ -15,20 +15,6 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     const savedTheme = localStorage.getItem("theme") as Theme;
     return savedTheme || "system";
   });
-  const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(window.innerWidth < 1280);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setSidebarCollapsed(window.innerWidth < 1280); // Collapse on mobile and tablet
-    };
-
-    handleResize(); // Initial check
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const applyTheme = (theme: Theme) => {
@@ -43,6 +29,22 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     applyTheme(theme);
     localStorage.setItem("theme", theme);
   }, [theme]);
+
+  const isMobile = () => window.innerWidth < 1280;
+  const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(isMobile);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSidebarCollapsed(isMobile); // Collapse on mobile and tablet
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, isSidebarCollapsed, setSidebarCollapsed }}>
