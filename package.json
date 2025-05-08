@@ -1,7 +1,9 @@
 {
   "name": "neatmark",
-  "private": true,
+  "description": "A Notion-inspired bookmark manager.",
   "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
   "type": "module",
   "scripts": {
     "start": "vite",
