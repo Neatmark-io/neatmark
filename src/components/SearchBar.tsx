@@ -47,7 +47,7 @@ const SearchBar: React.FC = () => {
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
-      {input && <button onClick={handleClear} />}
+      {input && <button title="Clear" onClick={handleClear} />}
     </div>
   );
 };

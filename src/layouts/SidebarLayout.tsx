@@ -16,7 +16,7 @@ const SidebarLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
         initial={{ x: "-100%" }}
         animate={{ x: isCollapsed ? "-100%" : 0 }}
       >
-        <button onClick={hideSidebar} className="sidebar-toggle-btn" />
+        <button title="Hide Sidebar" onClick={hideSidebar} className="sidebar-toggle-btn" />
         <Logo />
         <SearchBar />
         <FolderTree />

@@ -8,7 +8,7 @@ const NavbarLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <>
       <header className="navbar">
-        <button onClick={showSidebar} className="navbar-toggle-btn" />
+        <button title="Show Sidebar" onClick={showSidebar} className="navbar-toggle-btn" />
         <Logo />
       </header>
       {children}

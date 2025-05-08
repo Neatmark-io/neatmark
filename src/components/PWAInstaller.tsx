@@ -34,7 +34,7 @@ const PWAInstaller: React.FC = () => {
   };
 
   return (
-    <button onClick={handleInstallClick} className="p-2 bg-blue-500 text-white rounded">
+    <button title="Install" onClick={handleInstallClick} className="p-2 bg-blue-500 text-white rounded">
       Install App
     </button>
   );
