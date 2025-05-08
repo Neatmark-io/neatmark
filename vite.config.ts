@@ -21,18 +21,23 @@ export default defineConfig({
         background_color: "#f4f4f5",
         icons: [
           {
-            src: "favicon.ico",
-            sizes: "64x64 32x32 24x24 16x16",
+            src: "assets/favicon.ico",
+            sizes: "48x48",
             type: "image/x-icon",
           },
           {
-            src: "logo192.png",
+            src: "assets/favicon.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+          },
+          {
+            src: "assets/logo192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "maskable",
           },
           {
-            src: "logo512.png",
+            src: "assets/logo512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable",
