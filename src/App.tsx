@@ -4,7 +4,7 @@ import { SearchProvider } from "./context/SearchContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import NavbarLayout from "./layouts/NavbarLayout";
 import SidebarLayout from "./layouts/SidebarLayout";
-import AnimatedCardGrid from "./components/AnimatedCardGrid";
+import CardGrid from "./components/CardGrid";
 
 const App: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const App: React.FC = () => {
             <NavbarLayout>
               <SidebarLayout>
                 <main className="main-container">
-                  <AnimatedCardGrid />
+                  <CardGrid />
                 </main>
               </SidebarLayout>
             </NavbarLayout>

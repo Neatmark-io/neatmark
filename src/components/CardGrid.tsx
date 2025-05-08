@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { SearchContext } from "../context/SearchContext";
 import { Folder } from "../types";
 
-const AnimatedCardGrid: React.FC = () => {
+const CardGrid: React.FC = () => {
   const { filteredBookmarks, setSelectedFolder } = useContext(SearchContext)!;
   const folders = useMemo(() => filteredBookmarks.filter((item) => item.type === "folder"), [filteredBookmarks]);
   const bookmarks = useMemo(() => filteredBookmarks.filter((item) => item.type === "link"), [filteredBookmarks]);
@@ -52,4 +52,4 @@ const AnimatedCardGrid: React.FC = () => {
   );
 };
 
-export default AnimatedCardGrid;
+export default CardGrid;
