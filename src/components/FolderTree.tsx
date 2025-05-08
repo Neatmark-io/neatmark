@@ -18,7 +18,7 @@ const FolderTree: React.FC = () => {
     <li key={folder.title} className={`folder ${selectedFolder === folder.title ? "selected" : ""}`}>
       <div className="title" onClick={() => handleFolderClick(folder)}>
         <span className={`icon ${folder.icon ? "" : "default"}`}>{folder.icon}</span>
-        <span>{folder.title}</span>
+        <span className="folder-name">{folder.title}</span>
       </div>
       <ul>{folder.children.map((child) => child.type === "folder" && renderFolder(child))}</ul>
     </li>

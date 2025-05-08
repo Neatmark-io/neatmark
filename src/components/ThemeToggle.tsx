@@ -12,13 +12,13 @@ const ThemeToggle: React.FC = () => {
   return (
     <div className="theme-toggle">
       <button onClick={() => handleThemeChange("system")} className={`${theme === "system" ? "selected" : ""}`}>
-        monitor
+        <div className="system-icon" />
       </button>
       <button onClick={() => handleThemeChange("light")} className={`${theme === "light" ? "selected" : ""}`}>
-        light_mode
+        <div className="light-icon" />
       </button>
       <button onClick={() => handleThemeChange("dark")} className={`${theme === "dark" ? "selected" : ""}`}>
-        dark_mode
+        <div className="dark-icon" />
       </button>
     </div>
   );

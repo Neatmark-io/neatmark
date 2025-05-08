@@ -1,6 +1,5 @@
 /* Import Google Fonts and Material Icons */
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 
 /* Tailwind CSS directives */
 @tailwind base;
@@ -12,9 +11,6 @@
   --font-family-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial,
     sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  --font-family-icons: "Material Symbols Outlined";
-  --font-icons-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-  --font-icons-settings-filled: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
   --font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol",
     "Android Emoji", EmojiSymbols;
 }
@@ -62,16 +58,12 @@ code {
 
 /* Button to toggle the sidebar visibility on small screens */
 .navbar-toggle-btn {
-  font-family: var(--font-family-icons);
+  background-image: url("assets/icons/menu.svg");
   @apply xl:hidden
     fixed
+    w-10 h-10 sm:w-16 sm:h-16
     top-3 left-3 sm:top-2 sm:left-2 lg:top-4 lg:left-4
-    text-4xl sm:text-6xl;
-}
-
-/* Icon for the sidebar toggle button when sidebar is collapsed */
-.navbar-toggle-btn::before {
-  content: "menu";
+    bg-no-repeat bg-cover;
 }
 
 .navbar .app-logo {
@@ -109,16 +101,13 @@ code {
 
 /* Button to toggle the sidebar visibility on small screens */
 .sidebar-toggle-btn {
-  font-family: var(--font-family-icons);
+  background-image: url("assets/icons/close.svg");
   @apply xl:hidden
     fixed
     z-50
-    top-4 left-1 sm:top-3 sm:left-3 lg:top-5 lg:left-4
-    text-4xl sm:text-6xl;
-}
-/* Icon for the sidebar toggle button when sidebar is not collapsed */
-.sidebar-toggle-btn::before {
-  content: "close";
+    w-10 h-10 sm:w-16 sm:h-16
+    top-4 left-2 sm:top-3 sm:left-4 lg:top-5 lg:left-4
+    bg-no-repeat bg-cover;
 }
 
 .sidebar .app-logo {
@@ -154,7 +143,7 @@ code {
 /* Search bar container within the sidebar */
 .searchbar {
   @apply relative
-    max-sm:mt-4 px-8 sm:px-16 sm:py-4 lg:py-6 xl:p-4
+    max-sm:mt-2 px-12 py-2 sm:px-16 sm:py-4 lg:py-6 xl:p-4
     border-b-2
     sm:text-4xl xl:text-base;
 }
@@ -169,17 +158,12 @@ code {
 
 /* Button within the search bar */
 .searchbar button {
-  font-family: var(--font-family-icons);
-  font-variation-settings: var(--font-icons-settings-filled);
+  background-image: url("assets/icons/close.svg");
   @apply absolute
-    right-6 top-4
+    right-14 top-5 sm:right-20 sm:top-7 lg:top-9 xl:right-6 xl:top-6
+    w-4 h-4 sm:w-8 sm:h-8 xl:w-6 xl:h-6
     py-2
-    text-lg text-gray-500;
-}
-
-/* Icon for the search bar button */
-.searchbar button::before {
-  content: "close";
+    bg-no-repeat bg-cover;
 }
 
 /*
@@ -191,8 +175,7 @@ code {
 /* Folder tree container within the sidebar */
 .folder-tree {
   @apply overflow-auto
-    py-2 px-4 sm:px-8 xl:px-0 xl:pr-4
-    text-xl sm:text-4xl xl:text-base;
+    py-2 px-4 sm:px-8 xl:px-0 xl:pr-4;
 }
 
 /* Folder item within the folder tree */
@@ -216,23 +199,25 @@ code {
 
 /* Icon container within the folder item */
 .folder-tree .folder .title .icon {
-  @apply mr-2;
+  @apply mr-2 sm:mr-4 xl:mr-2
+    w-6 h-6 sm:w-10 sm:h-10 lg:w-12 lg:h-12 xl:w-4 xl:h-4
+    bg-no-repeat bg-cover;
 }
 
 /* Default icon for folder items */
 .folder-tree .folder .title .icon.default {
-  font-family: var(--font-family-icons);
-  font-variation-settings: var(--font-icons-settings-filled);
-}
-
-/* Icon for default folder items */
-.folder-tree .folder .title .icon.default:before {
-  content: "folder";
+  background-image: url("assets/icons/folder.svg");
 }
 
 /* Icon for selected folder items */
-.folder-tree .folder.selected > .title .icon.default:before {
-  content: "folder_open";
+.folder-tree .folder.selected > .title .icon.default {
+  background-image: url("assets/icons/folder_open.svg");
+}
+
+/* Title within the folder item */
+.folder-tree .folder .title .folder-name {
+  @apply w-60 sm:w-96 lg:w-auto xl:w-48
+    text-xl sm:text-4xl xl:text-base;
 }
 
 /*
@@ -253,10 +238,22 @@ code {
 
 /* Theme toggle button */
 .theme-toggle button {
-  @apply px-4 py-2
+  @apply px-2 py-2
     rounded-md
-    text-3xl lg:text-5xl xl:text-lg text-slate-700 dark:text-slate-400
     cursor-pointer;
+}
+.theme-toggle button div{
+  @apply w-10 h-10 sm:w-12 sm:h-12 xl:w-6 xl:h-6
+    bg-no-repeat bg-cover;
+}
+.theme-toggle button .system-icon {
+  background-image: url("assets/icons/monitor.svg");
+}
+.theme-toggle button .light-icon {
+  background-image: url("assets/icons/light_mode.svg");
+}
+.theme-toggle button .dark-icon {
+  background-image: url("assets/icons/dark_mode.svg");
 }
 
 /* Selected & Hover state for theme toggle button */
@@ -305,14 +302,9 @@ code {
 
 /* Icon within the folder card */
 .bookmark-card .icon {
-  font-family: var(--font-family-icons);
-  font-variation-settings: var(--font-icons-settings-filled);
-  @apply text-4xl mb-2;
-}
-
-/* Icon for the folder card */
-.bookmark-card .icon:before {
-  content: "language";
+  background-image: url("assets/icons/language.svg");
+  @apply w-12 h-12 mb-2
+    bg-no-repeat bg-cover;
 }
 
 /* Icon within the bookmark card */
@@ -350,22 +342,17 @@ code {
 
 /* Icon within the folder card */
 .folder-card .icon {
-  font-family: var(--font-family-icons);
-  font-variation-settings: var(--font-icons-settings-filled);
-  @apply text-8xl mb-2;
-}
-
-/* Icon for the folder card */
-.folder-card .icon:before {
-  content: "folder";
+  background-image: url("assets/icons/folder.svg");
+  @apply w-24 h-24 mb-2
+    bg-no-repeat bg-cover;
 }
 
 /* Hover state for the folder card icon */
-.folder-card:hover .icon:before {
-  content: "folder_open";
+.folder-card:hover .icon {
+  background-image: url("assets/icons/folder_open.svg");
 }
 
 /* Title within the folder card */
 .folder-card .title {
-  @apply text-xs text-center;
+  @apply text-xs sm:text-lg lg:text-xl xl:text-sm text-center;
 }
