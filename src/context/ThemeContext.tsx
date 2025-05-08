@@ -41,10 +41,6 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
 
     handleResize(); // Initial check
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   const hideSidebar = () => {
