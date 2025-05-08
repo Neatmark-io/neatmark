@@ -3,6 +3,7 @@
   "description": "A Notion-inspired bookmark manager.",
   "version": "0.0.0",
   "license": "MIT",
+  "homepage": "https://github.com/Neatmark-io/neatmark",
   "private": true,
   "type": "module",
   "scripts": {
