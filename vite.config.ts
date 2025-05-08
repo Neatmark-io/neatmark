@@ -4,6 +4,7 @@ import { createHtmlPlugin } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
+  base: "/neatmark/",
   plugins: [
     react(),
     createHtmlPlugin({
@@ -47,7 +48,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: "/data/bookmarks.json",
+            urlPattern: "/data/bookmarks.html",
             handler: "CacheFirst",
           },
         ],
