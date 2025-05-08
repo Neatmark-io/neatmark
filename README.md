@@ -1,54 +1,88 @@
-# React + TypeScript + Vite
+# Neatmark
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Notion-inspired bookmark manager with offline support. Organize, search, and access your links beautifully across devices.
 
-Currently, two official plugins are available:
+![Neatmark](/public/assets/screenshot.png "Neatmark")
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+### 🗂️ Notion-like Organization
+- Nested folders with Google Material Symbols icons
+- Collapsible sidebar (responsive for mobile/desktop)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🔍 Smart Discovery
+- Real-time search with keyboard shortcuts (`Ctrl+K/Cmd+K`)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### ⚡ Performance
+- Offline-first PWA (works without internet)
+- Instant search with memoized filtering
+- Smooth animations (card transitions, UI feedback)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🎨 Personalized
+- Light/dark mode + custom CSS theming
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Tech Stack
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **Frontend**: React 19 + TypeScript + Vite
+- **Styling**: TailwindCSS + CSS variables
+- **Offline**: Workbox + IndexedDB
+- **Icons**: Google Material Symbols
+- **Animations**: Framer Motion
+
+## 🚀 Quick Start
+
+### Step 1: Fork the Project
+1. Visit the [Neatmark GitHub repository](https://github.com/Neatmark-io/neatmark).
+2. Click the *Fork* button in the upper right corner of the page to fork the project to your GitHub account.
+
+
+### Step 2: Export Browser Bookmarks
+1. Open your browser Bookmark Manager.
+2. Click **Export Bookmarks**.
+3. Save as `bookmarks.html` file.
+
+
+### Step 3: Replace the Bookmarks File
+1. Open the **Neatmark** repository in your GitHub account (the one you just forked).
+2. Click on the `data` folder in the repository.
+3. Click the **Upload files** button, select the HTML file you saved earlier, and upload it.
+4. Make sure the uploaded file is named `bookmarks.html`, and select **Commit changes**.
+
+
+### Step 4: Enable GitHub Pages
+1. In your **Neatmark** repository page, click on Settings.
+2. Find the **Pages** option.
+3. In the **Source** dropdown menu, select the **gh-pages** branch and click **Save**.
+4. After a few minutes, your static website will be available at `https://yourusername.github.io/neatmark`. Remember to replace `yourusername`.
+
+## 🧑‍💻 Development
+
+1. Clone repo:
+   ```bash
+   git clone https://github.com/Neatmark-io/neatmark.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run dev server:
+   ```bash
+   npm start
+   ```
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## 📦 PWA Installation
+- Desktop: Click "Install" in Chrome/Edge
+- Mobile: "Add to Home Screen" from browser menu
+
+## 🌐 Hosting Recommendations
+- Static hosting: GitHub Pages, Cloudflare Pages
+
+## 🤝 Contributing
+PRs welcome! See our [contribution guidelines](CONTRIBUTING.md).
+
+## 📄 License
+MIT
