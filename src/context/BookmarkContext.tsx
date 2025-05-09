@@ -21,7 +21,7 @@ export const BookmarkProvider: React.FC<React.PropsWithChildren> = ({ children }
   const parseBookmarks = (text: string) => {
     const lines = text.split("\n");
     const stack = [];
-    let currentFolder = { type: "folder", title: "", children: [] } as Folder;
+    let currentFolder = { type: "folder", title: "", children: [], icon: "" } as Folder;
     let folderName = "Bookmarks";
     let attributes;
 
@@ -70,7 +70,7 @@ export const BookmarkProvider: React.FC<React.PropsWithChildren> = ({ children }
       }
     }
 
-    return stack.length > 0 ? stack[0].children : [];
+    return stack.length > 0 ? stack : [];
   };
 
   // Helper function to convert snake_case to camelCase

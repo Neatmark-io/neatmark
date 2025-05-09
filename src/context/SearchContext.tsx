@@ -19,6 +19,12 @@ export const SearchProvider: React.FC<React.PropsWithChildren> = ({ children }) 
   const [filteredBookmarks, setFilteredBookmarks] = useState<(Folder | Bookmark)[]>(bookmarks);
 
   useEffect(() => {
+    if (bookmarks.length > 0) {
+      setSelectedFolder(bookmarks[0].title);
+    }
+  }, [bookmarks]);
+
+  useEffect(() => {
     const filterItems = (items: (Folder | Bookmark)[]): (Folder | Bookmark)[] => {
       return items.reduce<(Folder | Bookmark)[]>((acc, item) => {
         if (item.type === "folder") {
