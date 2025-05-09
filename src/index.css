@@ -210,7 +210,7 @@ code {
 }
 
 /* Icon for selected folder items */
-.folder-tree .folder.selected > .title .icon.default {
+.folder-tree .folder.selected > .title .icon.default, .folder-tree .folder:hover > .title .icon.default {
   background-image: url("../public/assets/icons/folder_open.svg");
 }
 
