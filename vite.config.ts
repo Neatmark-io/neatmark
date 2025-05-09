@@ -5,6 +5,9 @@ import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   base: "/neatmark/",
+  build: {
+    minify: false,
+  },
   plugins: [
     react(),
     createHtmlPlugin({
