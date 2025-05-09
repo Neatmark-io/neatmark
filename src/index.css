@@ -58,7 +58,7 @@ code {
 
 /* Button to toggle the sidebar visibility on small screens */
 .navbar-toggle-btn {
-  background-image: url("assets/icons/menu.svg");
+  background-image: url("../public/assets/icons/menu.svg");
   @apply xl:hidden
     fixed
     w-10 h-10 sm:w-16 sm:h-16
@@ -101,7 +101,7 @@ code {
 
 /* Button to toggle the sidebar visibility on small screens */
 .sidebar-toggle-btn {
-  background-image: url("assets/icons/close.svg");
+  background-image: url("../public/assets/icons/close.svg");
   @apply xl:hidden
     fixed
     z-50
@@ -158,7 +158,7 @@ code {
 
 /* Button within the search bar */
 .searchbar button {
-  background-image: url("assets/icons/close.svg");
+  background-image: url("../public/assets/icons/close.svg");
   @apply absolute
     right-14 top-5 sm:right-20 sm:top-7 lg:top-9 xl:right-6 xl:top-6
     w-4 h-4 sm:w-8 sm:h-8 xl:w-6 xl:h-6
@@ -206,12 +206,12 @@ code {
 
 /* Default icon for folder items */
 .folder-tree .folder .title .icon.default {
-  background-image: url("assets/icons/folder.svg");
+  background-image: url("../public/assets/icons/folder.svg");
 }
 
 /* Icon for selected folder items */
 .folder-tree .folder.selected > .title .icon.default {
-  background-image: url("assets/icons/folder_open.svg");
+  background-image: url("../public/assets/icons/folder_open.svg");
 }
 
 /* Title within the folder item */
@@ -247,13 +247,13 @@ code {
     bg-no-repeat bg-cover;
 }
 .theme-toggle button .system-icon {
-  background-image: url("assets/icons/monitor.svg");
+  background-image: url("../public/assets/icons/monitor.svg");
 }
 .theme-toggle button .light-icon {
-  background-image: url("assets/icons/light_mode.svg");
+  background-image: url("../public/assets/icons/light_mode.svg");
 }
 .theme-toggle button .dark-icon {
-  background-image: url("assets/icons/dark_mode.svg");
+  background-image: url("../public/assets/icons/dark_mode.svg");
 }
 
 /* Selected & Hover state for theme toggle button */
@@ -302,7 +302,7 @@ code {
 
 /* Icon within the folder card */
 .bookmark-card .icon {
-  background-image: url("assets/icons/language.svg");
+  background-image: url("../public/assets/icons/language.svg");
   @apply w-12 h-12 mb-2
     bg-no-repeat bg-cover;
 }
@@ -342,14 +342,14 @@ code {
 
 /* Icon within the folder card */
 .folder-card .icon {
-  background-image: url("assets/icons/folder.svg");
+  background-image: url("../public/assets/icons/folder.svg");
   @apply w-24 h-24 mb-2
     bg-no-repeat bg-cover;
 }
 
 /* Hover state for the folder card icon */
 .folder-card:hover .icon {
-  background-image: url("assets/icons/folder_open.svg");
+  background-image: url("../public/assets/icons/folder_open.svg");
 }
 
 /* Title within the folder card */
