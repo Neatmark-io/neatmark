@@ -35,9 +35,6 @@
     fetch(link.href, fetchOpts);
   }
 })();
-function getDefaultExportFromCjs(x) {
-  return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
-}
 var jsxRuntime = { exports: {} };
 var reactJsxRuntime_production = {};
 /**
@@ -538,7 +535,6 @@ function requireReact() {
   return react.exports;
 }
 var reactExports = requireReact();
-const React = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
 var client = { exports: {} };
 var reactDomClient_production = {};
 var scheduler = { exports: {} };
@@ -831,7 +827,7 @@ var hasRequiredReactDom_production;
 function requireReactDom_production() {
   if (hasRequiredReactDom_production) return reactDom_production;
   hasRequiredReactDom_production = 1;
-  var React2 = requireReact();
+  var React = requireReact();
   function formatProdErrorMessage(code) {
     var url = "https://react.dev/errors/" + code;
     if (1 < arguments.length) {
@@ -870,7 +866,7 @@ function requireReactDom_production() {
       implementation
     };
   }
-  var ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+  var ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
   function getCrossOriginStringAs(as, input) {
     if ("font" === as) return "";
     if ("string" === typeof input)
@@ -1007,7 +1003,7 @@ var hasRequiredReactDomClient_production;
 function requireReactDomClient_production() {
   if (hasRequiredReactDomClient_production) return reactDomClient_production;
   hasRequiredReactDomClient_production = 1;
-  var Scheduler = requireScheduler(), React2 = requireReact(), ReactDOM = requireReactDom();
+  var Scheduler = requireScheduler(), React = requireReact(), ReactDOM = requireReactDom();
   function formatProdErrorMessage(code) {
     var url = "https://react.dev/errors/" + code;
     if (1 < arguments.length) {
@@ -1175,7 +1171,7 @@ function requireReactDomClient_production() {
       }
     return null;
   }
-  var isArrayImpl = Array.isArray, ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, sharedNotPendingObject = {
+  var isArrayImpl = Array.isArray, ReactSharedInternals = React.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, sharedNotPendingObject = {
     pending: false,
     data: null,
     method: null,
@@ -11961,7 +11957,7 @@ function requireReactDomClient_production() {
       0 === i && attemptExplicitHydrationTarget(target);
     }
   };
-  var isomorphicReactPackageVersion$jscomp$inline_1785 = React2.version;
+  var isomorphicReactPackageVersion$jscomp$inline_1785 = React.version;
   if ("19.1.0" !== isomorphicReactPackageVersion$jscomp$inline_1785)
     throw Error(
       formatProdErrorMessage(
@@ -12121,7 +12117,7 @@ const BookmarkProvider = ({ children }) => {
           currentFolder.children.push({
             type: "link",
             title: linkMatch[3],
-            icon: attributes2["icon"],
+            icon: attributes2 == null ? void 0 : attributes2.icon,
             url: linkMatch[1]
           });
         }
@@ -12214,7 +12210,7 @@ const ThemeProvider = ({ children }) => {
     localStorage.setItem("theme", theme);
   }, [theme]);
   const isMobile = () => window.innerWidth < 1280;
-  const [isSidebarCollapsed, setSidebarCollapsed] = reactExports.useState(isMobile);
+  const [isSidebarCollapsed, setSidebarCollapsed] = reactExports.useState(isMobile());
   reactExports.useEffect(() => {
     const handleResize = () => {
       setSidebarCollapsed(isMobile());
@@ -19358,7 +19354,7 @@ const SearchBar = () => {
   const { searchQuery, setSearchQuery } = reactExports.useContext(SearchContext);
   const [input, setInput] = reactExports.useState(searchQuery);
   const { hideSidebar } = reactExports.useContext(ThemeContext);
-  const inputRef = React.useRef(null);
+  const inputRef = reactExports.useRef(null);
   const handleChange = (e) => {
     setInput(e.target.value);
     setTimeout(() => {
@@ -19383,6 +19379,9 @@ const SearchBar = () => {
       }
     };
     window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleGlobalKeyDown);
+    };
   }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "searchbar", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
