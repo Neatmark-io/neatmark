@@ -15,7 +15,12 @@
     "Android Emoji", EmojiSymbols;
 }
 
-/* Base styles for the body element */
+/**
+ * Body Styles
+ *
+ * These styles apply to the `<body>` element, setting the base font,
+ * background color, text color, and smoothing for a consistent look.
+ */
 body {
   margin: 0;
   font-family: var(--font-family-sans);
@@ -24,7 +29,11 @@ body {
   @apply font-medium text-slate-700 dark:text-slate-400 bg-white dark:bg-slate-900;
 }
 
-/* Styles for code elements */
+/**
+ * Code Styles
+ *
+ * These styles apply to `<code>` elements, setting a monospace font for code blocks.
+ */
 code {
   font-family: var(--font-family-mono);
 }
@@ -35,12 +44,22 @@ code {
 =============================
 */
 
-/* Container for the entire page */
+/**
+ * Page Container
+ *
+ * This container wraps the entire page, creating a flexbox layout for the sidebar and main content.
+ * It switches between a column layout on smaller screens and a row layout on larger screens.
+ */
 .page-container {
   @apply flex h-screen flex-col xl:flex-row;
 }
 
-/* Main content container */
+/**
+ * Main Container
+ *
+ * This container holds the main content of the page.
+ * It occupies the remaining space and is a flexbox container for its children.
+ */
 .main-container {
   @apply flex flex-1 flex-col;
 }
@@ -50,13 +69,23 @@ code {
   Nav bar
 =============================
 */
+/**
+ * Navbar
+ *
+ * This container holds the navigation bar, which is hidden on larger screens and visible on smaller screens.
+ */
 .navbar {
   @apply xl:hidden relative w-full
     flex flex-row
     shadow;
 }
 
-/* Button to toggle the sidebar visibility on small screens */
+/**
+ * Navbar Toggle Button
+ *
+ * This button toggles the visibility of the sidebar on small screens.
+ * It uses a background image to display a menu icon.
+ */
 .navbar-toggle-btn {
   background-image: url("../public/assets/icons/menu.svg");
   @apply xl:hidden
@@ -66,6 +95,11 @@ code {
     bg-no-repeat bg-cover;
 }
 
+/**
+ * App Logo in Navbar
+ *
+ * Styles for the application logo within the navbar.
+ */
 .navbar .app-logo {
   @apply flex-grow justify-center p-0;
 }
@@ -76,7 +110,12 @@ code {
 =============================
 */
 
-/* Sidebar container */
+/**
+ * Sidebar Container
+ *
+ * This container holds the sidebar, which is hidden on larger screens and visible on smaller screens.
+ * It contains the app logo, search bar, and folder tree.
+ */
 .sidebar {
   @apply fixed xl:relative
     h-full w-full xl:w-72
@@ -89,17 +128,32 @@ code {
     transform translate-x-0 transition-transform duration-100 ease-in-out;
 }
 
-/* Sidebar when collapsed */
+/**
+ * Sidebar Collapsed State
+ *
+ * These styles apply when the sidebar is collapsed (hidden).
+ * It uses a translation to move the sidebar off-screen.
+ */
 .sidebar.collapsed {
   @apply -translate-x-full;
 }
 
-/* Sidebar when not collapsed */
+/**
+ * Sidebar Not Collapsed State
+ *
+ * These styles apply when the sidebar is not collapsed (visible).
+ * It uses a translation to move the sidebar into view.
+ */
 .sidebar:not(.collapsed) {
   @apply translate-x-0;
 }
 
-/* Button to toggle the sidebar visibility on small screens */
+/**
+ * Sidebar Toggle Button
+ *
+ * This button toggles the visibility of the sidebar on small screens.
+ * It uses a background image to display a close icon.
+ */
 .sidebar-toggle-btn {
   background-image: url("../public/assets/icons/close.svg");
   @apply xl:hidden
@@ -110,6 +164,11 @@ code {
     bg-no-repeat bg-cover;
 }
 
+/**
+ * App Logo in Sidebar
+ *
+ * Styles for the application logo within the sidebar.
+ */
 .sidebar .app-logo {
   @apply max-xl:hidden;
 }
@@ -120,7 +179,12 @@ code {
 =============================
 */
 
-/* Header section within the sidebar */
+/**
+ * App Logo Header
+ *
+ * This section contains the header for the app logo within the sidebar.
+ * It sets the height, shrink property, and font styles.
+ */
 .app-logo {
   @apply h-16 sm:h-20 lg:h-24 xl:h-16
     flex shrink-0 items-center
@@ -128,7 +192,12 @@ code {
     font-extrabold text-2xl sm:text-4xl lg:text-5xl xl:text-2xl;
 }
 
-/* Logo within the sidebar header */
+/**
+ * App Logo Image
+ *
+ * Styles for the image within the app logo header.
+ * It sets the height and width of the image.
+ */
 .app-logo-img {
   @apply h-10 w-auto
     mr-2;
@@ -140,7 +209,12 @@ code {
 =============================
 */
 
-/* Search bar container within the sidebar */
+/**
+ * Searchbar Container
+ *
+ * This container holds the search bar within the sidebar.
+ * It sets the relative positioning, max width, and border.
+ */
 .searchbar {
   @apply relative
     max-sm:mt-2 px-12 py-2 sm:px-16 sm:py-4 lg:py-6 xl:p-4
@@ -148,7 +222,12 @@ code {
     sm:text-4xl xl:text-base;
 }
 
-/* Input field within the search bar */
+/**
+ * Searchbar Input
+ *
+ * These styles apply to the input field within the search bar.
+ * It sets the width, padding, border, background color, and rounded corners.
+ */
 .searchbar input {
   @apply w-full
     px-4 py-2
@@ -156,7 +235,12 @@ code {
     bg-gray-50 dark:bg-gray-900;
 }
 
-/* Button within the search bar */
+/**
+ * Searchbar Button
+ *
+ * This button is within the search bar and uses a background image to display a close icon.
+ * It sets the absolute positioning, size, background image, and rounded corners.
+ */
 .searchbar button {
   background-image: url("../public/assets/icons/close.svg");
   @apply absolute
@@ -172,18 +256,33 @@ code {
 =============================
 */
 
-/* Folder tree container within the sidebar */
+/**
+ * Folder Tree Container
+ *
+ * This container holds the folder tree within the sidebar.
+ * It sets the overflow property and padding.
+ */
 .folder-tree {
   @apply overflow-auto
     py-2 px-4 sm:px-8 xl:px-0 xl:pr-4;
 }
 
-/* Folder item within the folder tree */
+/**
+ * Folder Item
+ *
+ * These styles apply to each folder item within the folder tree.
+ * It sets the margin-left.
+ */
 .folder-tree .folder {
   @apply ml-4;
 }
 
-/* Title of the folder item */
+/**
+ * Folder Title
+ *
+ * These styles apply to the title of each folder item.
+ * It sets the flexbox layout, cursor style, padding, and rounded corners.
+ */
 .folder-tree .folder .title {
   @apply flex items-center
     cursor-pointer
@@ -191,30 +290,56 @@ code {
     rounded-md;
 }
 
-/* Selected & Hover state for folder item*/
+/**
+ * Selected & Hover State for Folder Item
+ *
+ * These styles apply when a folder item is selected or hovered.
+ * It sets the background color.
+ */
 .folder-tree .folder.selected > .title,
 .folder-tree .folder > .title:hover {
   @apply bg-zinc-200 dark:bg-gray-900;
 }
 
-/* Icon container within the folder item */
+/**
+ * Folder Icon Container
+ *
+ * These styles apply to the icon container within each folder item.
+ * It sets the margin-right.
+ */
 .folder-tree .folder .title .icon {
   @apply mr-2 sm:mr-4 xl:mr-2
     w-6 h-6 sm:w-10 sm:h-10 lg:w-12 lg:h-12 xl:w-4 xl:h-4
     bg-no-repeat bg-cover;
 }
 
-/* Default icon for folder items */
+/**
+ * Default Folder Icon
+ *
+ * These styles apply to the default icon for folder items.
+ * It sets the background image.
+ */
 .folder-tree .folder .title .icon.default {
   background-image: url("../public/assets/icons/folder.svg");
 }
 
-/* Icon for selected folder items */
-.folder-tree .folder.selected > .title .icon.default, .folder-tree .folder:hover > .title .icon.default {
+/**
+ * Selected Folder Icon
+ *
+ * These styles apply to the icon for selected folder items.
+ * It sets the background image.
+ */
+.folder-tree .folder.selected > .title .icon.default,
+.folder-tree .folder:hover > .title .icon.default {
   background-image: url("../public/assets/icons/folder_open.svg");
 }
 
-/* Title within the folder item */
+/**
+ * Folder Title Text
+ *
+ * These styles apply to the text within the folder title.
+ * It sets the width and text size.
+ */
 .folder-tree .folder .title .folder-name {
   @apply w-60 sm:w-96 lg:w-auto xl:w-48
     text-xl sm:text-4xl xl:text-base;
@@ -226,7 +351,12 @@ code {
 =============================
 */
 
-/* Theme toggle button container */
+/**
+ * Theme Toggle Container
+ *
+ * This container holds the theme toggle button.
+ * It sets the relative positioning, min width, padding, flexbox layout, and justification.
+ */
 .theme-toggle {
   font-family: var(--font-family-icons);
   font-variation-settings: var(--font-icons-settings);
@@ -236,13 +366,25 @@ code {
     flex justify-center items-center;
 }
 
-/* Theme toggle button */
+/**
+ * Theme Toggle Button
+ *
+ * These styles apply to the theme toggle button.
+ * It sets the padding, rounded corners, and cursor style.
+ */
 .theme-toggle button {
   @apply px-2 py-2
     rounded-md
     cursor-pointer;
 }
-.theme-toggle button div{
+
+/**
+ * Theme Toggle Button Icon
+ *
+ * These styles apply to the icons within the theme toggle button.
+ * It sets the width, height, background image, and rounded corners.
+ */
+.theme-toggle button div {
   @apply w-10 h-10 sm:w-12 sm:h-12 xl:w-6 xl:h-6
     bg-no-repeat bg-cover;
 }
@@ -256,7 +398,12 @@ code {
   background-image: url("../public/assets/icons/dark_mode.svg");
 }
 
-/* Selected & Hover state for theme toggle button */
+/**
+ * Selected & Hover State for Theme Toggle Button
+ *
+ * These styles apply when the theme toggle button is selected or hovered.
+ * It sets the background color.
+ */
 .theme-toggle button.selected,
 .theme-toggle button:hover {
   @apply bg-gray-200 dark:bg-slate-900;
@@ -268,7 +415,12 @@ code {
 =============================
 */
 
-/* Grid container for cards */
+/**
+ * Card Grid Container
+ *
+ * This container holds the cards in a grid layout.
+ * It sets the gap and padding.
+ */
 .card-grid {
   @apply grid gap-1
     xl:p-6;
@@ -291,7 +443,12 @@ code {
 =============================
 */
 
-/* Bookmark card container */
+/**
+ * Bookmark Card Container
+ *
+ * This container holds the bookmark card.
+ * It sets the padding, rounded corners, flexbox layout, shadow, hover shadow, and cursor style.
+ */
 .bookmark-card {
   @apply p-6 rounded-lg
     flex items-center
@@ -300,29 +457,54 @@ code {
     cursor-pointer;
 }
 
-/* Icon within the folder card */
+/**
+ * Bookmark Icon
+ *
+ * These styles apply to the icon within the bookmark card.
+ * It sets the width, height, margin-bottom, and background image.
+ */
 .bookmark-card .icon {
   background-image: url("../public/assets/icons/language.svg");
   @apply w-12 h-12 mb-2
     bg-no-repeat bg-cover;
 }
 
-/* Icon within the bookmark card */
+/**
+ * Bookmark Icon Image
+ *
+ * Styles for the image within the bookmark card.
+ * It sets the width and height of the image.
+ */
 .bookmark-card .icon-image {
   @apply w-12 h-12 mb-2;
 }
 
-/* Information container within the bookmark card */
+/**
+ * Bookmark Information Container
+ *
+ * This container holds the information within the bookmark card.
+ * It sets the flexbox layout, overflow property, and margin-left.
+ */
 .bookmark-card .info {
   @apply ml-4 flex flex-col overflow-hidden;
 }
 
-/* Title within the bookmark card */
+/**
+ * Bookmark Title
+ *
+ * These styles apply to the title within the bookmark card.
+ * It sets the margin-bottom, text size, and font weight.
+ */
 .bookmark-card .title {
   @apply mb-2 text-lg font-bold;
 }
 
-/* URL within the bookmark card */
+/**
+ * Bookmark URL
+ *
+ * These styles apply to the URL within the bookmark card.
+ * It sets the text size and text color.
+ */
 .bookmark-card .url {
   @apply text-xs text-gray-400 dark:text-gray-600;
 }
@@ -333,26 +515,46 @@ code {
 =============================
 */
 
-/* Folder card container */
+/**
+ * Folder Card Container
+ *
+ * This container holds the folder card.
+ * It sets the padding, rounded corners, flexbox layout, hover shadow, and cursor style.
+ */
 .folder-card {
   @apply p-4 rounded-lg
     flex flex-col justify-start items-center
     hover:shadow-lg cursor-pointer;
 }
 
-/* Icon within the folder card */
+/**
+ * Folder Icon
+ *
+ * These styles apply to the icon within the folder card.
+ * It sets the width, height, margin-bottom, and background image.
+ */
 .folder-card .icon {
   background-image: url("../public/assets/icons/folder.svg");
   @apply w-24 h-24 mb-2
     bg-no-repeat bg-cover;
 }
 
-/* Hover state for the folder card icon */
+/**
+ * Folder Icon Hover State
+ *
+ * These styles apply when the folder card is hovered.
+ * It sets the background image.
+ */
 .folder-card:hover .icon {
   background-image: url("../public/assets/icons/folder_open.svg");
 }
 
-/* Title within the folder card */
+/**
+ * Folder Title
+ *
+ * These styles apply to the title within the folder card.
+ * It sets the text size and text alignment.
+ */
 .folder-card .title {
   @apply text-xs sm:text-lg lg:text-xl xl:text-sm text-center;
 }

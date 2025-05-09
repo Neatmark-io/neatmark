@@ -1,35 +1,87 @@
+/**
+ * Represents a bookmark with associated metadata.
+ */
 export interface Bookmark {
+  /**
+   * The type of item, always "link" for bookmarks.
+   */
   type: "link";
+  /**
+   * The title of the bookmark.
+   */
   title: string;
-  icon: string; // Base64 encoded icon
+  /**
+   * A Base64 encoded icon for the bookmark.
+   */
+  icon: string;
+  /**
+   * The URL the bookmark points to.
+   */
   url: string;
-  clicks: number; // For analytics
+  /**
+   * The number of times the bookmark has been clicked (for analytics).
+   */
+  clicks: number;
+  /**
+   * Optional metadata for the bookmark, such as an image or description.
+   */
   meta?: {
-    image?: string; // OG image
+    /**
+     * The Open Graph image URL for the bookmark.
+     */
+    image?: string;
+    /**
+     * A description for the bookmark.
+     */
     description?: string;
   };
 }
 
+/**
+ * Represents a folder containing bookmarks and other folders.
+ */
 export interface Folder {
+  /**
+   * The type of item, always "folder" for folders.
+   */
   type: "folder";
+  /**
+   * The title of the folder.
+   */
   title: string;
+  /**
+   * An array of children, which can be either folders or bookmarks.
+   */
   children: (Folder | Bookmark)[];
-  icon?: string; // Emoji
+  /**
+   * An optional emoji icon for the folder.
+   */
+  icon?: string;
 }
 
+/**
+ * Represents the entire application data, including bookmarks, folders, and the currently selected folder.
+ */
 export interface AppData {
+  /**
+   * An array of top-level folders and bookmarks.
+   */
   bookmarks: (Folder | Bookmark)[];
+  /**
+   * The ID of the currently selected folder, or null if no folder is selected.
+   */
   selectedFolder: string | null;
 }
 
+/**
+ * Represents the application's theme.
+ */
 export type Theme = "system" | "light" | "dark";
 
 /**
- * The BeforeInstallPromptEvent is fired at the Window.onbeforeinstallprompt handler
- * before a user is prompted to "install" a web site to a home screen on mobile.
+ * Represents the BeforeInstallPromptEvent, triggered before a user is prompted to install the web app.
  */
 export interface BeforeInstallPromptEvent extends Event {
-
   /**
    * Returns an array of DOMString items containing the platforms on which the event was dispatched.
    * This is provided for user agents that want to present a choice of versions to the user such as,
@@ -42,8 +94,8 @@ export interface BeforeInstallPromptEvent extends Event {
    * Returns a Promise that resolves to a DOMString containing either "accepted" or "dismissed".
    */
   readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed',
-    platform: string
+    outcome: "accepted" | "dismissed";
+    platform: string;
   }>;
 
   /**
@@ -51,5 +103,4 @@ export interface BeforeInstallPromptEvent extends Event {
    * This method returns a Promise.
    */
   prompt(): Promise<void>;
-
 }

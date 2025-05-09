@@ -6,6 +6,10 @@ import NavbarLayout from "./layouts/NavbarLayout";
 import SidebarLayout from "./layouts/SidebarLayout";
 import CardGrid from "./components/CardGrid";
 
+/**
+ * The main App component that wraps the application with context providers and layouts.
+ * @returns {JSX.Element} The App component
+ */
 const App: React.FC = () => {
   return (
     <ThemeProvider>

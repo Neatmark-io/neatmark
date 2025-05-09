@@ -1,5 +1,12 @@
 import React from "react";
 
+/**
+ * Logo Component
+ *
+ * This component displays the application's logo and name.
+ *
+ * @returns {JSX.Element} A JSX element representing the logo.
+ */
 const Logo: React.FC = () => {
   return (
     <div className="app-logo">

@@ -1,11 +1,24 @@
-import React, { useContext, useMemo } from "react";
 import { motion } from "framer-motion";
+import React, { useContext, useMemo } from "react";
 import { SearchContext } from "../context/SearchContext";
 import { Bookmark, Folder } from "../types";
 
+/**
+ * Represents a folder card component.
+ *
+ * @param {Object} props - The component props.
+ * @param {Folder} props.folder - The folder object to display.
+ * @returns {JSX.Element} The folder card component.
+ */
 const FolderCard: React.FC<{ folder: Folder }> = ({ folder }) => {
   const { setSelectedFolder } = useContext(SearchContext)!;
 
+  /**
+   * Handles the click event on the folder card.
+   * Sets the selected folder in the search context.
+   *
+   * @param {Folder} folder - The folder object that was clicked.
+   */
   const handleFolderClick = (folder: Folder) => {
     setSelectedFolder(folder.title);
   };
@@ -18,6 +31,13 @@ const FolderCard: React.FC<{ folder: Folder }> = ({ folder }) => {
   );
 };
 
+/**
+ * Represents a bookmark card component.
+ *
+ * @param {Object} props - The component props.
+ * @param {Bookmark} props.bookmark - The bookmark object to display.
+ * @returns {JSX.Element} The bookmark card component.
+ */
 const BookmarkCard: React.FC<{ bookmark: Bookmark }> = ({ bookmark }) => (
   <a key={bookmark.url} href={bookmark.url} target="_blank" rel="noopener noreferrer">
     <div className="bookmark-card">
@@ -34,9 +54,30 @@ const BookmarkCard: React.FC<{ bookmark: Bookmark }> = ({ bookmark }) => (
   </a>
 );
 
+/**
+ * Represents a grid of cards displaying folders and bookmarks.
+ *
+ * @returns {JSX.Element} The card grid component.
+ */
 const CardGrid: React.FC = () => {
   const { filteredBookmarks } = useContext(SearchContext)!;
+
+  /**
+   * Filters the bookmarks to get only the folders.
+   *
+   * @memo This ensures the result is cached and only recalculated when `filteredBookmarks` changes.
+   * @param {Array<Bookmark | Folder>} filteredBookmarks - The array of filtered bookmarks and folders.
+   * @returns {Array<Folder>} An array of folders.
+   */
   const folders = useMemo(() => filteredBookmarks.filter((item) => item.type === "folder"), [filteredBookmarks]);
+
+  /**
+   * Filters the bookmarks to get only the links (bookmarks).
+   *
+   * @memo This ensures the result is cached and only recalculated when `filteredBookmarks` changes.
+   * @param {Array<Bookmark | Folder>} filteredBookmarks - The array of filtered bookmarks and folders.
+   * @returns {Array<Bookmark>} An array of bookmarks.
+   */
   const bookmarks = useMemo(() => filteredBookmarks.filter((item) => item.type === "link"), [filteredBookmarks]);
 
   return (
