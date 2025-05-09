@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "start": "vite dev",
-    "build": "tsc -b && vite build && cp README.md dist/README.md",
+    "build": "rm -r dist && tsc -b && vite build && cp README.md dist/README.md",
     "lint": "eslint .",
     "preview": "vite preview"
   },
