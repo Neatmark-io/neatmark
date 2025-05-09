@@ -12127,7 +12127,7 @@ const BookmarkProvider = ({ children }) => {
         }
       }
     }
-    return stack.length > 0 ? stack[0].children : [];
+    return stack.length > 0 ? stack : [];
   };
   const toCamelCase = (snakeCaseStr) => {
     return snakeCaseStr.toLowerCase().replace(/(_\w)/g, (substring) => substring.toUpperCase());
@@ -12149,6 +12149,11 @@ const SearchProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = reactExports.useState("");
   const [selectedFolder, setSelectedFolder] = reactExports.useState(null);
   const [filteredBookmarks, setFilteredBookmarks] = reactExports.useState(bookmarks);
+  reactExports.useEffect(() => {
+    if (bookmarks.length > 0) {
+      setSelectedFolder(bookmarks[0].title);
+    }
+  }, [bookmarks]);
   reactExports.useEffect(() => {
     const filterItems = (items) => {
       return items.reduce((acc, item) => {

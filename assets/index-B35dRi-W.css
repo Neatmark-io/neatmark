@@ -893,7 +893,7 @@ code {
   background-image: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23334155'%3e%3cpath%20d='M160-160q-33%200-56.5-23.5T80-240v-480q0-33%2023.5-56.5T160-800h240l80%2080h320q33%200%2056.5%2023.5T880-640v400q0%2033-23.5%2056.5T800-160H160Z'%20/%3e%3c/svg%3e");
 }
 /* Icon for selected folder items */
-.folder-tree .folder.selected > .title .icon.default {
+.folder-tree .folder.selected > .title .icon.default, .folder-tree .folder:hover > .title .icon.default {
   background-image: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20height='24px'%20viewBox='0%20-960%20960%20960'%20width='24px'%20fill='%23334155'%3e%3cpath%20d='M160-160q-33%200-56.5-23.5T80-240v-480q0-33%2023.5-56.5T160-800h240l80%2080h320q33%200%2056.5%2023.5T880-640H160v400l96-320h684L837-217q-8%2026-29.5%2041.5T760-160H160Z'%20/%3e%3c/svg%3e");
 }
 /* Title within the folder item */
