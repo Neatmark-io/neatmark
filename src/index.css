@@ -475,8 +475,9 @@ code {
  * Styles for the image within the bookmark card.
  * It sets the width and height of the image.
  */
-.bookmark-card .icon-image {
-  @apply w-12 h-12 mb-2;
+.bookmark-card .icon-image,
+.bookmark-card .icon {
+  @apply min-w-12 min-h-12  mb-2;
 }
 
 /**
@@ -496,7 +497,7 @@ code {
  * It sets the margin-bottom, text size, and font weight.
  */
 .bookmark-card .title {
-  @apply mb-2 text-lg font-bold;
+  @apply mb-2 text-lg font-bold truncate;
 }
 
 /**
@@ -506,7 +507,7 @@ code {
  * It sets the text size and text color.
  */
 .bookmark-card .url {
-  @apply text-xs text-gray-400 dark:text-gray-600;
+  @apply text-xs truncate text-gray-400 dark:text-gray-600;
 }
 
 /*
