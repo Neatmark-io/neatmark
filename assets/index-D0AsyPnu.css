@@ -1285,10 +1285,11 @@ code {
  * Styles for the image within the bookmark card.
  * It sets the width and height of the image.
  */
-.bookmark-card .icon-image{
+.bookmark-card .icon-image,
+.bookmark-card .icon{
   margin-bottom: 0.5rem;
-  height: 3rem;
-  width: 3rem;
+  min-height: 3rem;
+  min-width: 3rem;
 }
 /**
  * Bookmark Information Container
@@ -1310,6 +1311,9 @@ code {
  */
 .bookmark-card .title{
   margin-bottom: 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
@@ -1321,6 +1325,9 @@ code {
  * It sets the text size and text color.
  */
 .bookmark-card .url{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.75rem;
   line-height: 1rem;
   --tw-text-opacity: 1;
