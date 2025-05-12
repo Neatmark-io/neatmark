@@ -43,18 +43,18 @@ export default defineConfig({
           },
         ],
       },
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: /.*\/data\/.*/,
-            handler: "NetworkFirst",
-          },
-          {
-            urlPattern: /.*\/assets\/.*/,
-            handler: "StaleWhileRevalidate",
-          },
-        ],
-      },
+      // workbox: {
+      //   runtimeCaching: [
+      //     {
+      //       urlPattern: /.*\/data\/.*/,
+      //       handler: "NetworkFirst",
+      //     },
+      //     {
+      //       urlPattern: /.*\/assets\/.*/,
+      //       handler: "StaleWhileRevalidate",
+      //     },
+      //   ],
+      // },
     }),
   ],
 });
