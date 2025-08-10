@@ -65,9 +65,9 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
     const applyTheme = (theme: Theme) => {
       if (theme === "system") {
         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.classList.toggle("dark", systemTheme === "dark");
+        document.documentElement.setAttribute("data-theme", systemTheme);
       } else {
-        document.documentElement.classList.toggle("dark", theme === "dark");
+        document.documentElement.setAttribute("data-theme", theme);
       }
     };
 

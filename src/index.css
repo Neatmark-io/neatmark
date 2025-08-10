@@ -1,19 +1,88 @@
-/* Import Google Fonts and Material Icons */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
 /* Tailwind CSS directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Define custom CSS variables for fonts */
-:root {
-  --font-family-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial,
-    sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  --font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol",
-    "Android Emoji", EmojiSymbols;
+/* DaisyUI directives */
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
 }
+
+/* DaisyUI Default Light theme */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(98.5% 0 0);
+  --color-base-200: oklch(96% 0 0);
+  --color-base-300: oklch(92% 0 0);
+  --color-base-content: oklch(24% 0.002 285);
+  --color-primary: oklch(44% 0.03 256.802);
+  --color-primary-content: oklch(98% 0 0);
+  --color-secondary: oklch(92% 0.004 286.32);
+  --color-secondary-content: oklch(44% 0.017 285.786);
+  --color-accent: oklch(70% 0.191 22.216);
+  --color-accent-content: oklch(98% 0.003 247.858);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(62% 0.214 259.815);
+  --color-info-content: oklch(98% 0.003 247.858);
+  --color-success: oklch(69% 0.17 162.48);
+  --color-success-content: oklch(98% 0.003 247.858);
+  --color-warning: oklch(79% 0.184 86.047);
+  --color-warning-content: oklch(98% 0.003 247.858);
+  --color-error: oklch(63% 0.237 25.331);
+  --color-error-content: oklch(98% 0.003 247.858);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* DaisyUI Default Dark theme */
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(20% 0 0);
+  --color-base-200: oklch(26% 0 0);
+  --color-base-300: oklch(37% 0 0);
+  --color-base-content: oklch(87% 0 0);
+  --color-primary: oklch(60% 0.15 256.802);
+  --color-primary-content: oklch(12% 0.003 285);
+  --color-secondary: oklch(26% 0.007 34.298);
+  --color-secondary-content: oklch(86% 0.005 56.366);
+  --color-accent: oklch(65% 0.191 22.216);
+  --color-accent-content: oklch(14% 0.005 285.823);
+  --color-neutral: oklch(70% 0.015 286.067);
+  --color-neutral-content: oklch(21% 0.006 285.885);
+  --color-info: oklch(62% 0.214 259.815);
+  --color-info-content: oklch(14% 0.005 285.823);
+  --color-success: oklch(76% 0.233 130.85);
+  --color-success-content: oklch(14% 0.005 285.823);
+  --color-warning: oklch(76% 0.188 70.08);
+  --color-warning-content: oklch(14% 0.005 285.823);
+  --color-error: oklch(64% 0.246 16.439);
+  --color-error-content: oklch(14% 0.005 285.823);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.375rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
 
 /**
  * Body Styles
@@ -23,19 +92,9 @@
  */
 body {
   margin: 0;
-  font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply font-medium text-slate-700 dark:text-slate-400 bg-white dark:bg-slate-900;
-}
-
-/**
- * Code Styles
- *
- * These styles apply to `<code>` elements, setting a monospace font for code blocks.
- */
-code {
-  font-family: var(--font-family-mono);
+  @apply font-medium text-base-content bg-base-100;
 }
 
 /*
@@ -123,8 +182,8 @@ code {
     z-50 xl:z-auto
     px-2 sm:px-8 xl:px-0
     flex flex-col
-    bg-zinc-100 dark:bg-gray-800
-    xl:border-r border-slate-900/10 dark:border-slate-300/10
+    bg-base-200
+    xl:border-r border-secondary
     transform translate-x-0 transition-transform duration-100 ease-in-out;
 }
 
@@ -218,7 +277,7 @@ code {
 .searchbar {
   @apply relative
     max-sm:mt-2 px-12 py-2 sm:px-16 sm:py-4 lg:py-6 xl:p-4
-    border-b-2
+    border-b-1 border-secondary
     sm:text-4xl xl:text-base;
 }
 
@@ -231,8 +290,8 @@ code {
 .searchbar input {
   @apply w-full
     px-4 py-2
-    border border-gray-200 dark:border-gray-800 rounded-md
-    bg-gray-50 dark:bg-gray-900;
+    input rounded-field
+    bg-base-100;
 }
 
 /**
@@ -298,7 +357,7 @@ code {
  */
 .folder-tree .folder.selected > .title,
 .folder-tree .folder > .title:hover {
-  @apply bg-zinc-200 dark:bg-gray-900;
+  @apply bg-base-300;
 }
 
 /**
@@ -374,7 +433,7 @@ code {
  */
 .theme-toggle button {
   @apply px-2 py-2
-    rounded-md
+    rounded-field
     cursor-pointer;
 }
 
@@ -406,7 +465,7 @@ code {
  */
 .theme-toggle button.selected,
 .theme-toggle button:hover {
-  @apply bg-gray-200 dark:bg-slate-900;
+  @apply bg-base-300;
 }
 
 /*
@@ -426,7 +485,7 @@ code {
     xl:p-6;
 }
 .card-grid .divider {
-  @apply my-1 border-gray-200 dark:border-gray-800;
+  @apply my-1 border-0 border-base-300;
 }
 .card-grid .folder-grid {
   @apply p-4
@@ -450,10 +509,11 @@ code {
  * It sets the padding, rounded corners, flexbox layout, shadow, hover shadow, and cursor style.
  */
 .bookmark-card {
-  @apply p-6 rounded-lg
+  @apply p-6 rounded-box
     flex items-center
     shadow hover:shadow-lg transition
-  bg-white dark:bg-gray-800 hover:bg-gray-100 hover:dark:bg-gray-700
+    bg-base-100 hover:bg-base-200
+    shadow-base-300
     cursor-pointer;
 }
 
@@ -507,7 +567,7 @@ code {
  * It sets the text size and text color.
  */
 .bookmark-card .url {
-  @apply text-xs truncate text-gray-400 dark:text-gray-600;
+  @apply text-xs truncate text-base-content;
 }
 
 /*
@@ -523,7 +583,7 @@ code {
  * It sets the padding, rounded corners, flexbox layout, hover shadow, and cursor style.
  */
 .folder-card {
-  @apply p-4 rounded-lg
+  @apply p-4 rounded-box
     flex flex-col justify-start items-center
     hover:shadow-lg cursor-pointer;
 }

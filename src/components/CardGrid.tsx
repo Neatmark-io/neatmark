@@ -85,7 +85,7 @@ const CardGrid: React.FC = () => {
       {folders.length > 0 && (
         <div className="folder-grid">
           {folders.map((folder) => (
-            <FolderCard folder={folder} />
+            <FolderCard key={folder.title} folder={folder} />
           ))}
         </div>
       )}
@@ -95,7 +95,7 @@ const CardGrid: React.FC = () => {
       {bookmarks.length > 0 && (
         <div className="bookmark-grid">
           {bookmarks.map((bookmark) => (
-            <BookmarkCard bookmark={bookmark} />
+            <BookmarkCard key={bookmark.url} bookmark={bookmark} />
           ))}
         </div>
       )}
