@@ -1,9 +1,9 @@
 /* Tailwind CSS directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* DaisyUI directives */
 @plugin "daisyui" {
-  themes: notion --default, dark --prefersdark;
+  themes: light --default, dark --prefersdark;
   root: ":root";
   include: ;
   exclude: ;
