@@ -31,7 +31,9 @@ const FolderRow: React.FC<{ folder: Folder }> = ({ folder }) => {
         <span className={`icon ${folder.icon ? "" : "default"}`}>{folder.icon}</span>
         <span className="folder-name">{folder.title}</span>
       </div>
-      <ul>{folder.children.map((child) => child.type === "folder" && <FolderRow folder={child} />)}</ul>
+      <ul>
+        {folder.children.map((child) => child.type === "folder" && <FolderRow key={child.title} folder={child} />)}
+      </ul>
     </li>
   );
 };
