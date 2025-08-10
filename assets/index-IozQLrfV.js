@@ -12201,9 +12201,9 @@ const ThemeProvider = ({ children }) => {
     const applyTheme = (theme2) => {
       if (theme2 === "system") {
         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.classList.toggle("dark", systemTheme === "dark");
+        document.documentElement.setAttribute("data-theme", systemTheme);
       } else {
-        document.documentElement.classList.toggle("dark", theme2 === "dark");
+        document.documentElement.setAttribute("data-theme", theme2);
       }
     };
     applyTheme(theme);
@@ -19343,7 +19343,7 @@ const FolderRow = ({ folder }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `icon ${folder.icon ? "" : "default"}`, children: folder.icon }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "folder-name", children: folder.title })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: folder.children.map((child) => child.type === "folder" && /* @__PURE__ */ jsxRuntimeExports.jsx(FolderRow, { folder: child })) })
+    /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: folder.children.map((child) => child.type === "folder" && /* @__PURE__ */ jsxRuntimeExports.jsx(FolderRow, { folder: child }, child.title)) })
   ] });
 };
 const FolderTree = () => {
@@ -19464,9 +19464,9 @@ const CardGrid = () => {
   const folders = reactExports.useMemo(() => filteredBookmarks.filter((item) => item.type === "folder"), [filteredBookmarks]);
   const bookmarks = reactExports.useMemo(() => filteredBookmarks.filter((item) => item.type === "link"), [filteredBookmarks]);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(motion.div, { className: "card-grid", layout: true, children: [
-    folders.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "folder-grid", children: folders.map((folder) => /* @__PURE__ */ jsxRuntimeExports.jsx(FolderCard, { folder })) }),
+    folders.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "folder-grid", children: folders.map((folder) => /* @__PURE__ */ jsxRuntimeExports.jsx(FolderCard, { folder }, folder.title)) }),
     folders.length > 0 && bookmarks.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("hr", { className: "divider" }),
-    bookmarks.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bookmark-grid", children: bookmarks.map((bookmark) => /* @__PURE__ */ jsxRuntimeExports.jsx(BookmarkCard, { bookmark })) })
+    bookmarks.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bookmark-grid", children: bookmarks.map((bookmark) => /* @__PURE__ */ jsxRuntimeExports.jsx(BookmarkCard, { bookmark }, bookmark.url)) })
   ] });
 };
 const App = () => {
