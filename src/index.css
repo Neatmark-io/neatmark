@@ -1,18 +1,14 @@
-/* Import Google Fonts and Material Icons */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
 /* Tailwind CSS directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Define custom CSS variables for fonts */
-:root {
-  --font-family-sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial,
-    sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  --font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol",
-    "Android Emoji", EmojiSymbols;
+@plugin "daisyui" {
+  themes: notion --default, dark --prefersdark;
+  root: ":root";
+  include: ;
+  exclude: ;
+  prefix: ;
+  logs: true;
 }
 
 /**
@@ -23,19 +19,9 @@
  */
 body {
   margin: 0;
-  font-family: var(--font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply font-medium text-slate-700 dark:text-slate-400 bg-white dark:bg-slate-900;
-}
-
-/**
- * Code Styles
- *
- * These styles apply to `<code>` elements, setting a monospace font for code blocks.
- */
-code {
-  font-family: var(--font-family-mono);
+  @apply font-medium text-base-content bg-base-100;
 }
 
 /*
@@ -123,8 +109,8 @@ code {
     z-50 xl:z-auto
     px-2 sm:px-8 xl:px-0
     flex flex-col
-    bg-zinc-100 dark:bg-gray-800
-    xl:border-r border-slate-900/10 dark:border-slate-300/10
+    bg-base-200
+    xl:border-r border-base-300
     transform translate-x-0 transition-transform duration-100 ease-in-out;
 }
 
@@ -231,8 +217,8 @@ code {
 .searchbar input {
   @apply w-full
     px-4 py-2
-    border border-gray-200 dark:border-gray-800 rounded-md
-    bg-gray-50 dark:bg-gray-900;
+    input rounded-field
+    bg-base-100;
 }
 
 /**
@@ -298,7 +284,7 @@ code {
  */
 .folder-tree .folder.selected > .title,
 .folder-tree .folder > .title:hover {
-  @apply bg-zinc-200 dark:bg-gray-900;
+  @apply bg-base-300;
 }
 
 /**
@@ -374,7 +360,7 @@ code {
  */
 .theme-toggle button {
   @apply px-2 py-2
-    rounded-md
+    rounded-field
     cursor-pointer;
 }
 
@@ -406,7 +392,7 @@ code {
  */
 .theme-toggle button.selected,
 .theme-toggle button:hover {
-  @apply bg-gray-200 dark:bg-slate-900;
+  @apply bg-base-300;
 }
 
 /*
@@ -426,7 +412,7 @@ code {
     xl:p-6;
 }
 .card-grid .divider {
-  @apply my-1 border-gray-200 dark:border-gray-800;
+  @apply my-1 border-0 border-base-300;
 }
 .card-grid .folder-grid {
   @apply p-4
@@ -450,10 +436,10 @@ code {
  * It sets the padding, rounded corners, flexbox layout, shadow, hover shadow, and cursor style.
  */
 .bookmark-card {
-  @apply p-6 rounded-lg
+  @apply p-6 rounded-box
     flex items-center
     shadow hover:shadow-lg transition
-  bg-white dark:bg-gray-800 hover:bg-gray-100 hover:dark:bg-gray-700
+    bg-base-100 hover:bg-base-200
     cursor-pointer;
 }
 
@@ -507,7 +493,7 @@ code {
  * It sets the text size and text color.
  */
 .bookmark-card .url {
-  @apply text-xs truncate text-gray-400 dark:text-gray-600;
+  @apply text-xs truncate text-base-content;
 }
 
 /*
@@ -523,7 +509,7 @@ code {
  * It sets the padding, rounded corners, flexbox layout, hover shadow, and cursor style.
  */
 .folder-card {
-  @apply p-4 rounded-lg
+  @apply p-4 rounded-box
     flex flex-col justify-start items-center
     hover:shadow-lg cursor-pointer;
 }
