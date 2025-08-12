@@ -1,14 +1,16 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import { viteSingleFile } from "vite-plugin-singlefile";
 
 export default defineConfig({
   base: "/neatmark/",
   build: {
-    minify: false,
+    minify: true,
   },
   plugins: [
     react(),
+    viteSingleFile(),
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
