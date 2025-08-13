@@ -3,12 +3,9 @@
 
 /* DaisyUI directives */
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes: all;
   root: ":root";
-  include: ;
-  exclude: ;
-  prefix: ;
-  logs: true;
+  logs: false;
 }
 
 /* DaisyUI Default Light theme */
@@ -51,7 +48,7 @@
 @plugin "daisyui/theme" {
   name: "dark";
   default: false;
-  prefersdark: false;
+  prefersdark: true;
   color-scheme: "dark";
   --color-base-100: oklch(20% 0 0);
   --color-base-200: oklch(26% 0 0);
@@ -82,7 +79,6 @@
   --depth: 1;
   --noise: 0;
 }
-
 
 /**
  * Body Styles
@@ -447,7 +443,7 @@ body {
   @apply w-10 h-10 sm:w-12 sm:h-12 xl:w-6 xl:h-6
     bg-no-repeat bg-cover;
 }
-.theme-toggle button .system-icon {
+.theme-toggle button .auto-icon {
   background-image: url("../public/assets/icons/monitor.svg");
 }
 .theme-toggle button .light-icon {

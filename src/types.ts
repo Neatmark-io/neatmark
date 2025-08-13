@@ -76,7 +76,7 @@ export interface AppData {
 /**
  * Represents the application's theme.
  */
-export type Theme = "system" | "light" | "dark";
+export type Theme = "auto" | "light" | "dark";
 
 /**
  * Represents the BeforeInstallPromptEvent, triggered before a user is prompted to install the web app.

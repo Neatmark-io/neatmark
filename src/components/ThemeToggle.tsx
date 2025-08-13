@@ -47,7 +47,7 @@ const ThemeButton: React.FC<{ title: Theme }> = ({ title }) => {
 const ThemeToggle: React.FC = () => {
   return (
     <div className="theme-toggle">
-      <ThemeButton title="system" />
+      <ThemeButton title="auto" />
       <ThemeButton title="light" />
       <ThemeButton title="dark" />
     </div>

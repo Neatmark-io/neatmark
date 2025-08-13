@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import daisyuiThemes from "daisyui/theme/object";
 import { Theme } from "../types";
 
 /**
@@ -53,7 +54,7 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
    */
   const [theme, setTheme] = useState<Theme>(() => {
     const savedTheme = localStorage.getItem("theme") as Theme;
-    return savedTheme || "system";
+    return savedTheme || "auto";
   });
 
   /**
@@ -62,16 +63,8 @@ export const ThemeProvider: React.FC<React.PropsWithChildren> = ({ children }) =
    * @param {Theme} theme - The current theme.
    */
   useEffect(() => {
-    const applyTheme = (theme: Theme) => {
-      if (theme === "system") {
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", systemTheme);
-      } else {
-        document.documentElement.setAttribute("data-theme", theme);
-      }
-    };
-
-    applyTheme(theme);
+    document.body.setAttribute("data-theme", theme);
+    document.body.setAttribute("data-color-scheme", daisyuiThemes[theme]?.["color-scheme"] ?? "auto");
     localStorage.setItem("theme", theme);
   }, [theme]);
 
