@@ -1,16 +1,21 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
-import { viteSingleFile } from "vite-plugin-singlefile";
 
 export default defineConfig({
-  base: "/neatmark/",
   build: {
-    minify: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: `assets/[name]-[hash].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: function (file) {
+          return file.names.some((name) => name.includes("css")) ? `assets/[name]-[hash].[ext]` : `assets/[name].[ext]`;
+        },
+      },
+    },
   },
   plugins: [
     react(),
-    viteSingleFile(),
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
