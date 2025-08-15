@@ -1,7 +1,7 @@
 {
   "name": "neatmark",
   "description": "A Notion-inspired bookmark manager.",
-  "version": "0.0.0",
+  "version": "1.1.1",
   "license": "MIT",
   "homepage": "https://github.com/Neatmark-io/neatmark",
   "author": "Oleg Shulyakov (https://github.com/olegshulyakov/)",
