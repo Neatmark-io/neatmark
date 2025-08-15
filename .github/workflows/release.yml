@@ -1,0 +1,130 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Check commit author
+        id: author-check
+        run: |
+          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          echo "author_email=$AUTHOR_EMAIL" >> $GITHUB_OUTPUT
+
+      - name: Skip if commit is from GitHub Actions
+        if: steps.author-check.outputs.author_email == 'actions@github.com'
+        run: |
+          echo "Commit from GitHub Actions — skipping release"
+          exit 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Git user
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Bump and tag version
+        id: bump-version
+        run: |
+          PREV_VERSION=$(node -p "require('./package.json').version")
+          echo "PREV_VERSION=$PREV_VERSION" >> $GITHUB_ENV
+          npm version patch --message "release:%s"
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Push commit and tag
+        run: git push origin main --follow-tags
+
+      - name: Build
+        run: npm run build
+
+      - name: Zip build output
+        run: |
+          cd dist
+          zip -r ../index.html.zip .
+          cd ..
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: index-html-zip
+          path: index.html.zip
+
+      - name: Build Changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          mode: "COMMIT"
+          ignorePreReleases: "false"
+          fromTag: "v${{ env.PREV_VERSION }}"
+          toTag: "v${{ env.VERSION }}"
+          configurationJson: |
+            {
+              "template": "## Release Notes\n#{{CHANGELOG}}",
+              "categories": [
+                {
+                  "title": "### 🚀 Enhancements",
+                  "labels": ["feat", "feature"]
+                },
+                {
+                  "title": "### 🛠 Fixes",
+                  "labels": ["fix", "bug"]
+                },
+                {
+                  "title": "### 📚 Documentetion",
+                  "labels": ["docs"]
+                },
+                {
+                  "title": "### 💬 Other",
+                  "labels": []
+                }
+              ],
+              "ignore_labels": [
+                "ignore",
+                "build",
+                "chore",
+                "ci",
+                "refactor",
+                "revert",
+                "style",
+                "release"
+              ],
+              "label_extractor": [
+                {
+                  "pattern": "^(release|build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)",
+                  "on_property": "title",
+                  "target": "$1"
+                }
+              ]
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
+          body: ${{steps.build_changelog.outputs.changelog}}
+          files: index.html.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
