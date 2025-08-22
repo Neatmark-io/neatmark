@@ -1,0 +1,25 @@
+name: 📚 Documentation
+description: Fix typos, clarify docs, or add missing information
+title: '[Docs]: '
+labels: ['docs']
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Where is the issue?
+      description: |
+        Provide links/file paths (e.g., `docs/quickstart.md`).
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What needs improvement?
+      description: Describe the problem or suggestion.
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Changes
+      description: How should this be fixed/updated?
