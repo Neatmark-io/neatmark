@@ -42,6 +42,11 @@ jobs:
       - name: Build
         run: npm run build -- --base=/${{ env.basePath }}
 
+      - name: Copy issue templates to output
+        run: |
+          mkdir -p dist/.github/ISSUE_TEMPLATE
+          cp -r .github/ISSUE_TEMPLATE/* dist/.github/ISSUE_TEMPLATE/
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
