@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
     paths-ignore:
-      - "!.vscode/**"
+      - '!.vscode/**'
 
   pull_request:
 
@@ -23,11 +23,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: lts/*
           cache: "npm"
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Test
+        run: |
+          if [ -f "package.json" ] && grep -q '"test"' package.json; then
+            npm test
+          else
+            echo "No test script defined, skipping tests."
+          fi
 
       - name: Build
         run: npm run build
