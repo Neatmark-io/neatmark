@@ -1,0 +1,30 @@
+name: 🎨 UI/UX Feedback
+description: Suggest visual, usability, or interaction improvements
+title: '[UI]: '
+labels: ['ui/ux']
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feedback Summary
+      description: What aspect of the UI/UX needs attention?
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Behavior
+      description: Describe what feels unintuitive or broken.
+
+  - type: textarea
+    id: suggested
+    attributes:
+      label: Suggested Improvement
+      description: How could this be made better?
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Screenshots/Mockups
+      placeholder: Add links or attachments if possible.

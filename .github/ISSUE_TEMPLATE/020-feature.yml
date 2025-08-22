@@ -1,0 +1,51 @@
+name: ✨ Feature Request
+description: Suggest a new idea or enhancement
+title: "[Feature]: "
+labels: ["feature"]
+body:
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before submitting your enhancement request.
+      options:
+        - label: I am running the latest code. Mention the version if possible as well.
+          required: true
+        - label: I carefully followed the [README.md](README.md).
+          required: true
+        - label: I searched using keywords relevant to my issue to make sure that I am creating a new issue that is not already open (or closed).
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe of what you were trying to do, and what you expected to do as an enhancement.
+      placeholder: Detailed description of the enhancement
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem does this solve? Why is it needed?
+      placeholder: Explanation of why this feature is needed and its benefits
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: If you have an idea as to how it can be implemented, please describe.
+
+  - type: textarea
+    attributes:
+      label: Alternatives
+      description: Other approaches you considered.
+
+  - type: textarea
+    attributes:
+      label: Additional Context
+      placeholder: Screenshots, mockups, or related issues.
