@@ -53,3 +53,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          full_commit_message: 'Deployment ${{ github.ref_name }}'
+          exclude_assets: ''
