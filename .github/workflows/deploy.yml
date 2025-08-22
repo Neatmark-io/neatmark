@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     tags:
-      - '**'
+      - "**"
 
   workflow_dispatch:
 
@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -41,6 +41,11 @@ jobs:
 
       - name: Build
         run: npm run build -- --base=/${{ env.basePath }}
+
+      - name: Copy issue templates to output
+        run: |
+          mkdir -p dist/.github/ISSUE_TEMPLATE
+          cp -r .github/ISSUE_TEMPLATE/* dist/.github/ISSUE_TEMPLATE/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
