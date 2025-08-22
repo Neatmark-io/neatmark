@@ -1,11 +1,10 @@
-name: Deploy site to Pages
+name: Deploy
 
 on:
   push:
-    branches: ["main"]
-    paths-ignore:
-      - "!.github/**"
-      - "!.vscode/**"
+    tags:
+      - '**'
+
   workflow_dispatch:
 
 jobs:
@@ -19,23 +18,32 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
 
     steps:
+      - name: Skip for non-tagged refs
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          echo "Dispatched from ${{github.ref}} — skipping deploy"
+          exit 1
+
       - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "22.x"
-          cache: "npm"
+          node-version: lts/*
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Set basePath variable
+        id: vars
+        run: echo "basePath=${{ github.event.repository.name }}" >> $GITHUB_ENV
+
       - name: Build
-        run: npm run build:github
+        run: npm run build -- --base=/${{ env.basePath }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
-        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
