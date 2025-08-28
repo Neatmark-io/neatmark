@@ -31,8 +31,8 @@ export default defineConfig(({ mode }) => {
           theme_color: "#f4f4f5",
           background_color: "#f4f4f5",
           icons: [
-            { src: "icon512_maskable.png", purpose: "maskable", sizes: "512x512", type: "image/png" },
-            { src: "icon512_rounded.png", purpose: "any", sizes: "512x512", type: "image/png" },
+            { src: "assets/icon512_maskable.png", purpose: "maskable", sizes: "512x512", type: "image/png" },
+            { src: "assets/icon512_rounded.png", purpose: "any", sizes: "512x512", type: "image/png" },
             { src: "assets/favicon.ico", sizes: "48x48", type: "image/x-icon" },
             { src: "assets/favicon.svg", sizes: "any", type: "image/svg+xml" },
           ],
