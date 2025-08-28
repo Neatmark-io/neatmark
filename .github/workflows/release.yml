@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       version_type:
-        description: 'Version type (major, minor, patch)'
+        description: "Version type (major, minor, patch)"
         required: false
-        default: 'patch'
+        default: "patch"
         type: choice
         options:
           - major
@@ -101,10 +101,10 @@ jobs:
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v5
         with:
-          mode: 'COMMIT'
-          ignorePreReleases: 'false'
-          fromTag: 'v${{ env.PREV_VERSION }}'
-          toTag: 'v${{ env.VERSION }}'
+          mode: "COMMIT"
+          ignorePreReleases: "false"
+          fromTag: "v${{ env.PREV_VERSION }}"
+          toTag: "v${{ env.VERSION }}"
           configurationJson: |
             {
               "template": "## Release Notes\n\n#{{CHANGELOG}}",
@@ -118,15 +118,31 @@ jobs:
                   "labels": ["fix", "bug"]
                 },
                 {
+                  "title": "### 🛡️ Security",
+                  "labels": ["security"]
+                },
+                {
                   "title": "### ⚡️ Performance",
                   "labels": ["perf"]
+                },
+                {
+                  "title": "### 🎨 Styling",
+                  "labels": ["style"]
+                },
+                {
+                  "title": "### 🧪 Testing",
+                  "labels": ["test"]
                 },
                 {
                   "title": "### 📚 Documentation",
                   "labels": ["docs"]
                 },
                 {
-                  "title": "### 💬 Other",
+                  "title": "### ◀️ Revert",
+                  "labels": ["revert"]
+                },
+                {
+                  "title": "### 💼 Other",
                   "labels": []
                 }
               ],
@@ -136,14 +152,12 @@ jobs:
                 "chore",
                 "ci",
                 "refactor",
-                "revert",
-                "style",
-                "test",
+                "review",
                 "release"
               ],
               "label_extractor": [
                 {
-                  "pattern": "^(release|build|chore|ci|docs|feat|fix|bug|perf|refactor|revert|style|test){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)",
+                  "pattern": "^([a-z]+)?:?\\s*(.*)",
                   "on_property": "title",
                   "target": "$1"
                 }
