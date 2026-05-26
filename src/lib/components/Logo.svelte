@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getAppState } from '$lib/state.svelte';
-  
+
   const appState = getAppState();
 
   const handleLogoClick = () => {

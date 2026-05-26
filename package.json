@@ -11,7 +11,7 @@
     "start": "vite dev",
     "build": "vite build",
     "build:github": "vite build --base=/neatmark && cp README.md dist/README.md",
-    "lint": "eslint .",
+    "lint": "eslint . && svelte-check --tsconfig ./tsconfig.json",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",

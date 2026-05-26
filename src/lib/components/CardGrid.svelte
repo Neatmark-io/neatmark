@@ -1,7 +1,5 @@
 <script lang="ts">
   import { getAppState } from '$lib/state.svelte';
-  import { flip } from 'svelte/animate';
-  import { fade } from 'svelte/transition';
   import type { Folder, Bookmark } from '$lib/types';
 
   const appState = getAppState();
@@ -14,9 +12,9 @@
   {#if folders.length > 0}
     <div class="folder-grid">
       {#each folders as folder (folder.id)}
-        <a 
+        <a
           href="?folder={encodeURIComponent(folder.id)}"
-          class="folder-card" 
+          class="folder-card"
         >
           <span class="icon"></span>
           <h3 class="title">{folder.title}</h3>
@@ -32,10 +30,10 @@
   {#if bookmarks.length > 0}
     <div class="bookmark-grid">
       {#each bookmarks as bookmark (bookmark.url)}
-        <a 
-          href={bookmark.url} 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href={bookmark.url}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <div class="bookmark-card">
             {#if !bookmark.icon}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { getAppState } from '$lib/state.svelte';
-  import type { Folder, Bookmark } from '$lib/types';
-  
+  import type { Folder } from '$lib/types';
+
   const appState = getAppState();
 
   const handleFolderClick = () => {
