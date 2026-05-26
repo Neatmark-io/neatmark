@@ -1,23 +1,13 @@
-import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-import { VitePWA } from "vite-plugin-pwa";
+import tailwindcss from '@tailwindcss/vite';
+import { sveltekit } from '@sveltejs/kit/vite';
+import { defineConfig } from 'vite';
+import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: `assets/[name]-[hash].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: function (file) {
-          return file.names.some((name) => name.includes("css")) ? `assets/[name]-[hash].[ext]` : `assets/[name].[ext]`;
-        },
-      },
-    },
-  },
   plugins: [
-    react(),
-    VitePWA({
-      registerType: "autoUpdate",
+    tailwindcss(),
+    sveltekit(),
+    SvelteKitPWA({
       manifest: {
         name: "Neatmark",
         short_name: "Neatmark",
@@ -26,31 +16,39 @@ export default defineConfig({
         theme_color: "#f4f4f5",
         background_color: "#f4f4f5",
         icons: [
-          { src: "assets/icon512_maskable.png", purpose: "maskable", sizes: "512x512", type: "image/png" },
-          { src: "assets/icon512_rounded.png", purpose: "any", sizes: "512x512", type: "image/png" },
-          { src: "assets/favicon.ico", sizes: "48x48", type: "image/x-icon" },
-          { src: "assets/favicon.svg", sizes: "any", type: "image/svg+xml" },
+          {
+            src: "assets/favicon.ico",
+            sizes: "48x48",
+            type: "image/x-icon",
+          },
+          {
+            src: "assets/favicon.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+          },
+          {
+            src: "assets/logo192.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "maskable",
+          },
+          {
+            src: "assets/logo512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
         ],
-        screenshots: [
-          { src: "screenshots/desktop.png", sizes: "1280x659", type: "image/png", form_factor: "wide" },
-          { src: "screenshots/mobile.png", sizes: "597x1280", type: "image/png", form_factor: "narrow" },
-        ],
-        start_url: "./",
-        scope: ".",
-        orientation: "any",
-        lang: "en-US",
       },
       workbox: {
-        cleanupOutdatedCaches: true,
-        globPatterns: ["**/*.{html,css,js,ico,svg,png,jpg}"],
         runtimeCaching: [
-          {
-            urlPattern: /.*\/assets\/.*/,
-            handler: "CacheFirst",
-          },
           {
             urlPattern: /.*\/data\/.*/,
             handler: "NetworkFirst",
+          },
+          {
+            urlPattern: /.*\/assets\/.*/,
+            handler: "StaleWhileRevalidate",
           },
         ],
       },
