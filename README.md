@@ -2,7 +2,7 @@
 
 A Notion-inspired bookmark manager with offline support. Organize, search, and access your links beautifully across devices.
 
-![Neatmark](https://raw.githubusercontent.com/Neatmark-io/neatmark/main/public/assets/screenshot.png "Neatmark")
+![Neatmark](https://raw.githubusercontent.com/Neatmark-io/neatmark/main/static/assets/screenshot.png "Neatmark")
 
 ## ✨ Features
 
