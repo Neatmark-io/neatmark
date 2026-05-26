@@ -44,7 +44,7 @@ A Notion-inspired bookmark manager with offline support. Organize, search, and a
 
 ### Step 3: Replace the Bookmarks File
 1. Open the **Neatmark** repository in your GitHub account (the one you just forked).
-2. Click on the `static/data` folder in the repository (or create it if it's missing).
+2. Click on the `data` folder in the repository (or create it if it's missing).
 3. Click the **Upload files** button, select the HTML file you saved earlier, and upload it.
 4. Make sure the uploaded file is named `bookmarks.html`, and select **Commit changes**.
 
@@ -67,7 +67,7 @@ A Notion-inspired bookmark manager with offline support. Organize, search, and a
    ```
 3. Run dev server:
    ```bash
-   npm run dev
+   npm start
    ```
 4. Build for production:
    ```bash
