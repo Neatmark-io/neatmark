@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
   /* Light theme */
   --color-base-100: oklch(100% 0 0);
@@ -29,28 +31,30 @@
   --size-field: 0.25rem;
 }
 
-@theme dark {
-  /* Dark theme */
-  --color-base-100: oklch(20% 0 0);
-  --color-base-200: oklch(26% 0 0);
-  --color-base-300: oklch(37% 0 0);
-  --color-base-content: oklch(98.5% 0 0);
-  --color-primary: oklch(92.2% 0 0);
-  --color-primary-content: oklch(20.5% 0 0);
-  --color-secondary: oklch(43% 0 0);
-  --color-secondary-content: oklch(98.5% 0 0);
-  --color-accent: oklch(43% 0 0);
-  --color-accent-content: oklch(98.5% 0 0);
-  --color-neutral: oklch(26.9% 0 0);
-  --color-neutral-content: oklch(70.8% 0 0);
-  --color-info: oklch(54% 0.245 262.881);
-  --color-info-content: oklch(20.5% 0 0);
-  --color-success: oklch(64% 0.2 131.684);
-  --color-success-content: oklch(20.5% 0 0);
-  --color-warning: oklch(70% 0.213 47.604);
-  --color-warning-content: oklch(20.5% 0 0);
-  --color-error: oklch(57.7% .245 27.325);
-  --color-error-content: oklch(20.5% 0 0);
+@layer theme {
+  :root[data-theme="dark"] {
+    /* Dark theme */
+    --color-base-100: oklch(20% 0 0);
+    --color-base-200: oklch(26% 0 0);
+    --color-base-300: oklch(37% 0 0);
+    --color-base-content: oklch(98.5% 0 0);
+    --color-primary: oklch(92.2% 0 0);
+    --color-primary-content: oklch(20.5% 0 0);
+    --color-secondary: oklch(43% 0 0);
+    --color-secondary-content: oklch(98.5% 0 0);
+    --color-accent: oklch(43% 0 0);
+    --color-accent-content: oklch(98.5% 0 0);
+    --color-neutral: oklch(26.9% 0 0);
+    --color-neutral-content: oklch(70.8% 0 0);
+    --color-info: oklch(54% 0.245 262.881);
+    --color-info-content: oklch(20.5% 0 0);
+    --color-success: oklch(64% 0.2 131.684);
+    --color-success-content: oklch(20.5% 0 0);
+    --color-warning: oklch(70% 0.213 47.604);
+    --color-warning-content: oklch(20.5% 0 0);
+    --color-error: oklch(57.7% .245 27.325);
+    --color-error-content: oklch(20.5% 0 0);
+  }
 }
 
 body {

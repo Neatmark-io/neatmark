@@ -25,6 +25,14 @@ export class AppState {
         this.isSidebarCollapsed = window.innerWidth < 1280;
       });
 
+      this.applyTheme(this.theme);
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (this.theme === 'auto') {
+          this.applyTheme('auto');
+        }
+      });
+
       this.fetchBookmarks();
     }
   }
@@ -41,8 +49,18 @@ export class AppState {
   setTheme(newTheme: Theme) {
     this.theme = newTheme;
     if (typeof window !== 'undefined') {
-      document.body.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+      this.applyTheme(newTheme);
+    }
+  }
+
+  private applyTheme(theme: Theme) {
+    if (typeof window !== 'undefined') {
+      let activeTheme = theme;
+      if (theme === 'auto') {
+        activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', activeTheme);
     }
   }
 
