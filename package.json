@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.4",
+    "@eslint/css": "^1.2.0",
     "@eslint/js": "^10.0.1",
     "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "^2.57.0",
@@ -33,6 +34,7 @@
     "globals": "^17.4.0",
     "svelte": "^5.55.2",
     "svelte-check": "^4.4.6",
+    "tailwind-csstree": "^0.3.2",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
