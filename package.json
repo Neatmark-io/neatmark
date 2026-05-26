@@ -15,7 +15,7 @@
     "url": "git+https://github.com/Neatmark-io/neatmark.git"
   },
   "scripts": {
-    "dev": "vite dev",
+    "start": "vite dev",
     "build": "vite build",
     "build:github": "vite build --base=/neatmark && cp README.md dist/README.md",
     "lint": "eslint .",
@@ -23,6 +23,9 @@
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "dependencies": {
+    "bits-ui": "^2.18.1"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.4",
@@ -41,8 +44,5 @@
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
     "vite": "^8.0.7"
-  },
-  "dependencies": {
-    "bits-ui": "^2.18.1"
   }
 }
