@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getAppState } from '$lib/state.svelte';
   import type { Folder } from '$lib/types';
+  import { resolve } from '$app/paths';
 
   const appState = getAppState();
 
@@ -11,12 +12,12 @@
 
 {#snippet folderRow(folder: Folder)}
   <li class="folder {appState.selectedFolder === folder.id ? 'selected' : ''}">
-    <a href="?folder={encodeURIComponent(folder.id)}" class="title" onclick={handleFolderClick}>
+    <a href={resolve(`/?folder=${encodeURIComponent(folder.id)}`)} class="title" onclick={handleFolderClick}>
       <span class="icon {folder.icon ? '' : 'default'}">{folder.icon || ''}</span>
       <span class="folder-name">{folder.title}</span>
     </a>
     <ul>
-      {#each folder.children as child}
+      {#each folder.children as child (child.type === 'folder' ? child.id : child.url)}
         {#if child.type === 'folder'}
           {@render folderRow(child as Folder)}
         {/if}
@@ -27,7 +28,7 @@
 
 <nav class="folder-tree">
   <ul>
-    {#each appState.bookmarks as item}
+    {#each appState.bookmarks as item (item.type === 'folder' ? item.id : item.url)}
       {#if item.type === 'folder'}
         {@render folderRow(item as Folder)}
       {/if}

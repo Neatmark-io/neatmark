@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getAppState } from '$lib/state.svelte';
   import type { Folder, Bookmark } from '$lib/types';
+  import { resolve } from '$app/paths';
 
   const appState = getAppState();
 
@@ -13,7 +14,7 @@
     <div class="folder-grid">
       {#each folders as folder (folder.id)}
         <a
-          href="?folder={encodeURIComponent(folder.id)}"
+          href={resolve(`/?folder=${encodeURIComponent(folder.id)}`)}
           class="folder-card"
         >
           <span class="icon"></span>
@@ -33,7 +34,7 @@
         <a
           href={bookmark.url}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="external noopener noreferrer"
         >
           <div class="bookmark-card">
             {#if !bookmark.icon}
