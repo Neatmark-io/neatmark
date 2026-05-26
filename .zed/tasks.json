@@ -26,6 +26,19 @@
     "save": "none"
   },
   {
+    "label": "npm: lint",
+    "command": "npm run lint",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "no_focus",
+    "reveal_target": "dock",
+    "hide": "on_success",
+    "shell": "system",
+    "show_summary": true,
+    "show_command": true,
+    "save": "none"
+  },
+  {
     "label": "npm: start",
     "command": "npm start",
     "use_new_terminal": false,
