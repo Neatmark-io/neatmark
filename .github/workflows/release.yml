@@ -1,0 +1,181 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Version type (major, minor, patch)"
+        required: false
+        default: "patch"
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fail if branch is not main
+        if: github.event_name == 'workflow_dispatch' && github.ref != 'refs/heads/main'
+        run: |
+          echo "This workflow should not be triggered with workflow_dispatch on a branch other than main"
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Check commit author
+        id: author-check
+        run: |
+          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          echo "author_email=$AUTHOR_EMAIL" >> $GITHUB_OUTPUT
+
+      - name: Skip if commit is from GitHub Actions
+        if: steps.author-check.outputs.author_email == 'actions@github.com'
+        run: |
+          echo "Commit from GitHub Actions — skipping release"
+          exit 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure Git user
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Bump and tag version
+        id: bump-version
+        run: |
+          PREV_VERSION=$(node -p "require('./package.json').version")
+          echo "PREV_VERSION=$PREV_VERSION" >> $GITHUB_ENV
+          VERSION_TYPE="${{ github.event.inputs.version_type || 'patch' }}"
+          npm version $VERSION_TYPE --message "release:%s"
+          VERSION=$(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "NEW_VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Test
+        run: |
+          if [ -f "package.json" ] && grep -q '"test"' package.json; then
+            npm test
+          else
+            echo "No test script defined, skipping tests."
+          fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Push commit and tag
+        run: git push origin main --follow-tags
+
+      - name: Zip build output
+        run: |
+          cd build
+          ZIP_NAME="index.html-${{ env.VERSION }}.zip"
+          zip -r "../$ZIP_NAME" .
+          cd ..
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: index-html-${{ env.VERSION }}-zip
+          path: ${{ env.ZIP_NAME }}
+
+      - name: Build Changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v5
+        with:
+          mode: "COMMIT"
+          ignorePreReleases: "false"
+          fromTag: "v${{ env.PREV_VERSION }}"
+          toTag: "v${{ env.VERSION }}"
+          configurationJson: |
+            {
+              "template": "## Release Notes\n\n#{{CHANGELOG}}",
+              "categories": [
+                {
+                  "title": "### 🚀 Enhancements",
+                  "labels": ["feat", "feature"]
+                },
+                {
+                  "title": "### 🛠 Fixes",
+                  "labels": ["fix", "bug"]
+                },
+                {
+                  "title": "### 🛡️ Security",
+                  "labels": ["security"]
+                },
+                {
+                  "title": "### ⚡️ Performance",
+                  "labels": ["perf"]
+                },
+                {
+                  "title": "### 🎨 Styling",
+                  "labels": ["style"]
+                },
+                {
+                  "title": "### 🧪 Testing",
+                  "labels": ["test"]
+                },
+                {
+                  "title": "### 📚 Documentation",
+                  "labels": ["docs"]
+                },
+                {
+                  "title": "### ◀️ Revert",
+                  "labels": ["revert"]
+                },
+                {
+                  "title": "### 💼 Other",
+                  "labels": []
+                }
+              ],
+              "ignore_labels": [
+                "ignore",
+                "build",
+                "chore",
+                "ci",
+                "refactor",
+                "review",
+                "release"
+              ],
+              "label_extractor": [
+                {
+                  "pattern": "^([a-z]+)?:?\\s*(.*)",
+                  "on_property": "title",
+                  "target": "$1"
+                }
+              ],
+              "commitIgnorePatterns": [
+                "^release:\\d+\\.\\d+\\.\\d+$",
+                "^\\d+\\.\\d+\\.\\d+$"
+              ]
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: v${{ env.VERSION }}
+          body: ${{steps.build_changelog.outputs.changelog}}
+          files: ${{ env.ZIP_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

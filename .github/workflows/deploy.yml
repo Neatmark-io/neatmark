@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - '**'
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+      - name: Skip for non-tagged refs
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        run: |
+          echo "Dispatched from ${{github.ref}} — skipping deploy"
+          exit 1
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:github
+        env:
+          BASE_PATH: '/${{ github.event.repository.name }}'
+
+      - name: Copy GitHub metadata to output
+        run: |
+          cp README.md build/
+          mkdir -p build/.github/ISSUE_TEMPLATE
+          cp -r .github/ISSUE_TEMPLATE/* build/.github/ISSUE_TEMPLATE/
+          mkdir -p build/.github/workflows
+          cp -r .github/workflows/* build/.github/workflows/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          full_commit_message: 'Deployment ${{ github.ref_name }}'
+          exclude_assets: ''
