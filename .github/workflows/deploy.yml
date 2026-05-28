@@ -35,23 +35,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set basePath variable
-        id: vars
-        run: echo "basePath=${{ github.event.repository.name }}" >> $GITHUB_ENV
-
       - name: Build
-        run: npm run build -- --base=/${{ env.basePath }}
+        run: npm run build
+        env:
+          BASE_PATH: '/${{ github.event.repository.name }}'
 
       - name: Copy issue templates to output
         run: |
-          cp README.md dist/
-          mkdir -p dist/.github/ISSUE_TEMPLATE
-          cp -r .github/ISSUE_TEMPLATE/* dist/.github/ISSUE_TEMPLATE/
+          cp README.md build/
+          mkdir -p build/.github/ISSUE_TEMPLATE
+          cp -r .github/ISSUE_TEMPLATE/* build/.github/ISSUE_TEMPLATE/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./build
           full_commit_message: 'Deployment ${{ github.ref_name }}'
           exclude_assets: ''
