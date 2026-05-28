@@ -100,15 +100,19 @@ body {
 }
 
 .sidebar {
-  @apply fixed xl:relative h-full w-full xl:w-72 inset-y-0 left-0 z-50 xl:z-auto px-2 sm:px-8 xl:px-0 flex flex-col bg-base-200 xl:border-r border-base-300 transform translate-x-0 transition-transform duration-100 ease-in-out;
+  @apply h-full w-full xl:w-72 px-2 sm:px-8 xl:px-0 flex flex-col bg-base-200 xl:border-r border-base-300;
 }
 
-.sidebar.collapsed {
-  @apply -translate-x-full;
+.mobile-sidebar {
+  @apply fixed inset-y-0 left-0 z-50 xl:hidden;
 }
 
-.sidebar:not(.collapsed) {
-  @apply translate-x-0;
+.desktop-sidebar {
+  @apply hidden xl:flex;
+}
+
+.sidebar-overlay {
+  @apply fixed inset-0 z-40 bg-black/30 xl:hidden;
 }
 
 .sidebar-toggle-btn {
