@@ -2,7 +2,7 @@
   import { Tooltip } from 'bits-ui';
   import { getAppState } from '$lib/state.svelte';
   import { onMount } from 'svelte';
-  
+
   const appState = getAppState();
   let inputElement: HTMLInputElement;
 
@@ -15,7 +15,7 @@
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       appState.searchQuery = value;
-    }, 1000);
+    }, 250);
   };
 
   const handleClear = () => {
