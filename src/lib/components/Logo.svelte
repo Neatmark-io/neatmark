@@ -1,6 +1,6 @@
 <script lang="ts">
   import { getAppState } from '$lib/state.svelte';
-  import { resolve } from '$app/paths';
+  import { resolve, asset } from '$app/paths';
 
   const appState = getAppState();
 
@@ -11,6 +11,6 @@
 </script>
 
 <div class="app-logo">
-  <img class="app-logo-img" src="/assets/logo.svg" alt="NeatMark">
+  <img class="app-logo-img" src={asset("/assets/logo.svg")} alt="NeatMark">
   <a class="app-logo-name" href={resolve("/")} onclick={handleLogoClick}>Neatmark</a>
 </div>

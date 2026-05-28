@@ -10,7 +10,7 @@
   "scripts": {
     "start": "vite dev",
     "build": "vite build",
-    "build:github": "vite build --base=/neatmark && cp README.md dist/README.md",
+    "build:github": "BASE_PATH=${BASE_PATH:-/neatmark} vite build && cp README.md build/README.md",
     "lint": "eslint . && svelte-check --tsconfig ./tsconfig.json",
     "preview": "vite preview",
     "prepare": "svelte-kit sync || echo ''",

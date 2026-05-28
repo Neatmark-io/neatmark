@@ -1,4 +1,5 @@
 import { getContext, setContext } from 'svelte';
+import { asset } from '$app/paths';
 import type { Bookmark, Folder, Theme } from './types';
 
 export class AppState {
@@ -80,7 +81,7 @@ export class AppState {
 
   async fetchBookmarks() {
     try {
-      const response = await fetch('/data/bookmarks.html');
+      const response = await fetch(asset('/data/bookmarks.html'));
       if (!response.ok) throw new Error('Failed to fetch bookmarks');
       const html = await response.text();
       this.bookmarks = this.parseBookmarks(html);
