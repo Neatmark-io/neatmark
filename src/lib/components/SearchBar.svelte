@@ -28,12 +28,23 @@
       appState.hideSidebar();
     } else if (e.key === 'Escape' && inputValue) {
       handleClear();
+    } else if (e.key === 'Escape') {
+      inputElement?.blur();
     }
   };
 
   onMount(() => {
+    const isTextInput = (target: EventTarget | null) => {
+      if (!(target instanceof HTMLElement)) return false;
+      const tagName = target.tagName.toLowerCase();
+      return tagName === 'input' || tagName === 'textarea' || target.isContentEditable;
+    };
+
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        inputElement?.focus();
+        e.preventDefault();
+      } else if (e.key === '/' && !isTextInput(e.target)) {
         inputElement?.focus();
         e.preventDefault();
       }
@@ -51,10 +62,17 @@
     type="text"
     placeholder="Search bookmarks..."
     aria-label="Search bookmarks"
+    aria-keyshortcuts="Control+K Meta+K /"
     value={inputValue}
     oninput={handleChange}
     onkeydown={handleKeyDown}
   />
+  {#if !inputValue}
+    <span class="search-shortcut" aria-hidden="true">
+      <kbd>⌘</kbd>
+      <kbd>K</kbd>
+    </span>
+  {/if}
   {#if inputValue}
     <Tooltip.Root>
       <Tooltip.Trigger aria-label="Clear search" onclick={handleClear} class="search-clear"></Tooltip.Trigger>

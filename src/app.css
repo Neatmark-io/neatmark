@@ -137,7 +137,15 @@ body {
 }
 
 .searchbar input {
-  @apply w-full px-4 py-2 bg-base-100 rounded-field outline-none border border-base-300 focus:border-primary;
+  @apply w-full rounded-box border border-base-300 bg-base-100 py-2 pl-4 pr-16 text-base-content outline-none placeholder:text-neutral-content focus:border-primary sm:py-3 sm:pl-6 sm:pr-28 xl:py-2 xl:pl-4 xl:pr-16;
+}
+
+.search-shortcut {
+  @apply pointer-events-none absolute right-16 top-1/2 flex -translate-y-1/2 gap-1 text-neutral-content sm:right-20 xl:right-8;
+}
+
+.search-shortcut kbd {
+  @apply flex h-6 w-6 items-center justify-center rounded-md border border-base-300 bg-base-100 text-xs leading-none shadow-sm sm:h-10 sm:w-10 sm:text-xl xl:h-6 xl:w-6 xl:text-xs;
 }
 
 .searchbar button {
