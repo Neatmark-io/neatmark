@@ -12,7 +12,12 @@
 
 {#snippet folderRow(folder: Folder)}
   <li class="folder {appState.selectedFolder === folder.id ? 'selected' : ''}">
-    <a href={resolve(`/?folder=${encodeURIComponent(folder.id)}`)} class="title" onclick={handleFolderClick}>
+    <a
+      href={resolve(`/?folder=${encodeURIComponent(folder.id)}`)}
+      class="title"
+      aria-current={appState.selectedFolder === folder.id ? 'page' : undefined}
+      onclick={handleFolderClick}
+    >
       <span class="icon {folder.icon ? '' : 'default'}">{folder.icon || ''}</span>
       <span class="folder-name">{folder.title}</span>
     </a>
@@ -26,7 +31,7 @@
   </li>
 {/snippet}
 
-<nav class="folder-tree">
+<nav class="folder-tree" aria-label="Folders">
   <ul>
     {#each appState.bookmarks as item (item.type === 'folder' ? item.id : item.url)}
       {#if item.type === 'folder'}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Tooltip } from 'bits-ui';
   import { getAppState } from '$lib/state.svelte';
   import { onMount } from 'svelte';
   
@@ -25,6 +26,8 @@
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       appState.hideSidebar();
+    } else if (e.key === 'Escape' && inputValue) {
+      handleClear();
     }
   };
 
@@ -47,11 +50,20 @@
     bind:this={inputElement}
     type="text"
     placeholder="Search bookmarks..."
+    aria-label="Search bookmarks"
     value={inputValue}
     oninput={handleChange}
     onkeydown={handleKeyDown}
   />
   {#if inputValue}
-    <button title="Clear" aria-label="Clear Search" onclick={handleClear}></button>
+    <Tooltip.Root>
+      <Tooltip.Trigger aria-label="Clear search" onclick={handleClear} class="search-clear"></Tooltip.Trigger>
+      <Tooltip.Portal>
+        <Tooltip.Content class="tooltip-content" side="bottom" sideOffset={6}>
+          Clear search
+          <Tooltip.Arrow class="tooltip-arrow" />
+        </Tooltip.Content>
+      </Tooltip.Portal>
+    </Tooltip.Root>
   {/if}
 </div>
