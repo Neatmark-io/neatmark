@@ -40,11 +40,13 @@ jobs:
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
 
-      - name: Copy issue templates to output
+      - name: Copy GitHub metadata to output
         run: |
           cp README.md build/
           mkdir -p build/.github/ISSUE_TEMPLATE
           cp -r .github/ISSUE_TEMPLATE/* build/.github/ISSUE_TEMPLATE/
+          mkdir -p build/.github/workflows
+          cp -r .github/workflows/* build/.github/workflows/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
