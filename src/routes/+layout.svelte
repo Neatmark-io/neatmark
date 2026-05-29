@@ -8,7 +8,7 @@
   import SearchBar from '$lib/components/SearchBar.svelte';
   import FolderTree from '$lib/components/FolderTree.svelte';
   import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-  
+
   let { children } = $props();
 
   // Initialize the AppState context
@@ -36,7 +36,7 @@
   <Tooltip.Root>
     <Tooltip.Trigger onclick={() => appState.hideSidebar()} class="sidebar-toggle-btn" aria-label="Hide sidebar"></Tooltip.Trigger>
     <Tooltip.Portal>
-      <Tooltip.Content class="tooltip-content" side="right" sideOffset={6}>
+      <Tooltip.Content class="tooltip-content" side="top" sideOffset={6}>
         Hide sidebar
         <Tooltip.Arrow class="tooltip-arrow" />
       </Tooltip.Content>
