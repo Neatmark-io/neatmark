@@ -117,7 +117,7 @@ body {
 
 .sidebar-toggle-btn {
   background-image: url("$lib/assets/icons/close.svg");
-  @apply xl:hidden absolute z-50 w-9 h-9 top-5 left-4 bg-no-repeat bg-cover;
+  @apply xl:hidden absolute z-50 w-9 h-9 top-7 left-4 bg-no-repeat bg-cover;
 }
 
 .sidebar .app-logo {
