@@ -4,10 +4,18 @@
     {
       "type": "npm",
       "script": "install",
-      "group": "clean",
+      "group": "build",
       "problemMatcher": [],
       "label": "npm: install",
-      "detail": "install dependencies from package"
+      "detail": "install dependencies"
+    },
+    {
+      "type": "npm",
+      "script": "lint",
+      "group": "test",
+      "problemMatcher": [],
+      "label": "npm: lint",
+      "detail": "run linter checks"
     },
     {
       "type": "npm",
@@ -15,7 +23,7 @@
       "group": { "kind": "build", "isDefault": true },
       "problemMatcher": [],
       "label": "npm: build",
-      "detail": "tsc -b && vite build"
+      "detail": "compile the code"
     },
     {
       "type": "npm",
@@ -39,7 +47,7 @@
       ],
       "isBackground": true,
       "label": "npm: start",
-      "detail": "vite dev"
+      "detail": "run dev server"
     }
   ]
 }
