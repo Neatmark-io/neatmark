@@ -1,0 +1,14 @@
+{
+  "actions.clearSearch": "खोज साफ करें",
+  "actions.hideSidebar": "साइडबार छिपाएं",
+  "actions.showSidebar": "साइडबार दिखाएं",
+  "labels.bookmarkNavigation": "बुकमार्क नेविगेशन",
+  "labels.folders": "फोल्डर",
+  "labels.language": "भाषा",
+  "labels.searchBookmarks": "बुकमार्क खोजें",
+  "labels.theme": "थीम",
+  "placeholders.searchBookmarks": "बुकमार्क खोजें...",
+  "themes.auto": "सिस्टम थीम का उपयोग करें",
+  "themes.dark": "डार्क थीम का उपयोग करें",
+  "themes.light": "लाइट थीम का उपयोग करें"
+}

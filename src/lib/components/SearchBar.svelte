@@ -60,8 +60,8 @@
   <input
     bind:this={inputElement}
     type="text"
-    placeholder="Search bookmarks..."
-    aria-label="Search bookmarks"
+    placeholder={appState.t('placeholders.searchBookmarks')}
+    aria-label={appState.t('labels.searchBookmarks')}
     aria-keyshortcuts="Control+K Meta+K /"
     value={inputValue}
     oninput={handleChange}
@@ -75,10 +75,10 @@
   {/if}
   {#if inputValue}
     <Tooltip.Root>
-      <Tooltip.Trigger aria-label="Clear search" onclick={handleClear} class="search-clear"></Tooltip.Trigger>
+      <Tooltip.Trigger aria-label={appState.t('actions.clearSearch')} onclick={handleClear} class="search-clear"></Tooltip.Trigger>
       <Tooltip.Portal>
         <Tooltip.Content class="tooltip-content" side="bottom" sideOffset={6}>
-          Clear search
+          {appState.t('actions.clearSearch')}
           <Tooltip.Arrow class="tooltip-arrow" />
         </Tooltip.Content>
       </Tooltip.Portal>

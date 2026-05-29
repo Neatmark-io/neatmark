@@ -1,0 +1,14 @@
+{
+  "actions.clearSearch": "Clear search",
+  "actions.hideSidebar": "Hide sidebar",
+  "actions.showSidebar": "Show sidebar",
+  "labels.bookmarkNavigation": "Bookmark navigation",
+  "labels.folders": "Folders",
+  "labels.language": "Language",
+  "labels.searchBookmarks": "Search bookmarks",
+  "labels.theme": "Theme",
+  "placeholders.searchBookmarks": "Search bookmarks...",
+  "themes.auto": "Use system theme",
+  "themes.dark": "Use dark theme",
+  "themes.light": "Use light theme"
+}

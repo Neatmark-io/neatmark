@@ -1,0 +1,14 @@
+{
+  "actions.clearSearch": "Очистить поиск",
+  "actions.hideSidebar": "Скрыть боковую панель",
+  "actions.showSidebar": "Показать боковую панель",
+  "labels.bookmarkNavigation": "Навигация по закладкам",
+  "labels.folders": "Папки",
+  "labels.language": "Язык",
+  "labels.searchBookmarks": "Поиск закладок",
+  "labels.theme": "Тема",
+  "placeholders.searchBookmarks": "Поиск закладок...",
+  "themes.auto": "Использовать системную тему",
+  "themes.dark": "Использовать темную тему",
+  "themes.light": "Использовать светлую тему"
+}

@@ -31,7 +31,7 @@
   </li>
 {/snippet}
 
-<nav class="folder-tree" aria-label="Folders">
+<nav class="folder-tree" aria-label={appState.t('labels.folders')}>
   <ul>
     {#each appState.bookmarks as item (item.type === 'folder' ? item.id : item.url)}
       {#if item.type === 'folder'}

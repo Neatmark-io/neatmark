@@ -1,0 +1,14 @@
+{
+  "actions.clearSearch": "Effacer la recherche",
+  "actions.hideSidebar": "Masquer la barre laterale",
+  "actions.showSidebar": "Afficher la barre laterale",
+  "labels.bookmarkNavigation": "Navigation des favoris",
+  "labels.folders": "Dossiers",
+  "labels.language": "Langue",
+  "labels.searchBookmarks": "Rechercher des favoris",
+  "labels.theme": "Theme",
+  "placeholders.searchBookmarks": "Rechercher des favoris...",
+  "themes.auto": "Utiliser le theme du systeme",
+  "themes.dark": "Utiliser le theme sombre",
+  "themes.light": "Utiliser le theme clair"
+}

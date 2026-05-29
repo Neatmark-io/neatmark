@@ -8,6 +8,7 @@
   import SearchBar from '$lib/components/SearchBar.svelte';
   import FolderTree from '$lib/components/FolderTree.svelte';
   import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+  import LanguageToggle from '$lib/components/LanguageToggle.svelte';
 
   let { children } = $props();
 
@@ -34,10 +35,10 @@
 
 {#snippet sidebarContent()}
   <Tooltip.Root>
-    <Tooltip.Trigger onclick={() => appState.hideSidebar()} class="sidebar-toggle-btn" aria-label="Hide sidebar"></Tooltip.Trigger>
+    <Tooltip.Trigger onclick={() => appState.hideSidebar()} class="sidebar-toggle-btn" aria-label={appState.t('actions.hideSidebar')}></Tooltip.Trigger>
     <Tooltip.Portal>
       <Tooltip.Content class="tooltip-content" side="top" sideOffset={6}>
-        Hide sidebar
+        {appState.t('actions.hideSidebar')}
         <Tooltip.Arrow class="tooltip-arrow" />
       </Tooltip.Content>
     </Tooltip.Portal>
@@ -45,11 +46,14 @@
   <Logo />
   <SearchBar />
   <FolderTree />
-  <ThemeToggle />
+  <div class="sidebar-controls">
+    <ThemeToggle />
+    <LanguageToggle />
+  </div>
 {/snippet}
 
 {#snippet showSidebarTrigger(props: Record<string, unknown>)}
-  <Dialog.Trigger {...props} class="navbar-toggle-btn" aria-label="Show sidebar"></Dialog.Trigger>
+  <Dialog.Trigger {...props} class="navbar-toggle-btn" aria-label={appState.t('actions.showSidebar')}></Dialog.Trigger>
 {/snippet}
 
 <Tooltip.Provider delayDuration={250} skipDelayDuration={100}>
@@ -60,7 +64,7 @@
           <Tooltip.Trigger child={showSidebarTrigger} />
           <Tooltip.Portal>
             <Tooltip.Content class="tooltip-content" side="right" sideOffset={6}>
-              Show sidebar
+              {appState.t('actions.showSidebar')}
               <Tooltip.Arrow class="tooltip-arrow" />
             </Tooltip.Content>
           </Tooltip.Portal>
@@ -70,12 +74,12 @@
 
       <Dialog.Portal>
         <Dialog.Overlay class="sidebar-overlay" />
-        <Dialog.Content class="sidebar mobile-sidebar" aria-label="Bookmark navigation">
+        <Dialog.Content class="sidebar mobile-sidebar" aria-label={appState.t('labels.bookmarkNavigation')}>
           {@render sidebarContent()}
         </Dialog.Content>
       </Dialog.Portal>
 
-      <aside class="sidebar desktop-sidebar" aria-label="Bookmark navigation">
+      <aside class="sidebar desktop-sidebar" aria-label={appState.t('labels.bookmarkNavigation')}>
         {@render sidebarContent()}
       </aside>
 

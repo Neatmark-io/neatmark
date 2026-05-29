@@ -1,0 +1,14 @@
+{
+  "actions.clearSearch": "Borrar busqueda",
+  "actions.hideSidebar": "Ocultar barra lateral",
+  "actions.showSidebar": "Mostrar barra lateral",
+  "labels.bookmarkNavigation": "Navegacion de marcadores",
+  "labels.folders": "Carpetas",
+  "labels.language": "Idioma",
+  "labels.searchBookmarks": "Buscar marcadores",
+  "labels.theme": "Tema",
+  "placeholders.searchBookmarks": "Buscar marcadores...",
+  "themes.auto": "Usar tema del sistema",
+  "themes.dark": "Usar tema oscuro",
+  "themes.light": "Usar tema claro"
+}

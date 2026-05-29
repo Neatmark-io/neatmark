@@ -1,0 +1,14 @@
+{
+  "actions.clearSearch": "Limpar busca",
+  "actions.hideSidebar": "Ocultar barra lateral",
+  "actions.showSidebar": "Mostrar barra lateral",
+  "labels.bookmarkNavigation": "Navegacao de favoritos",
+  "labels.folders": "Pastas",
+  "labels.language": "Idioma",
+  "labels.searchBookmarks": "Buscar favoritos",
+  "labels.theme": "Tema",
+  "placeholders.searchBookmarks": "Buscar favoritos...",
+  "themes.auto": "Usar tema do sistema",
+  "themes.dark": "Usar tema escuro",
+  "themes.light": "Usar tema claro"
+}

@@ -9,10 +9,10 @@
     appState.setTheme(newTheme);
   };
 
-  const themes: { value: Theme; label: string; iconClass: string }[] = [
-    { value: 'auto', label: 'Use system theme', iconClass: 'auto-icon' },
-    { value: 'light', label: 'Use light theme', iconClass: 'light-icon' },
-    { value: 'dark', label: 'Use dark theme', iconClass: 'dark-icon' }
+  const themes: { value: Theme; labelKey: 'themes.auto' | 'themes.light' | 'themes.dark'; iconClass: string }[] = [
+    { value: 'auto', labelKey: 'themes.auto', iconClass: 'auto-icon' },
+    { value: 'light', labelKey: 'themes.light', iconClass: 'light-icon' },
+    { value: 'dark', labelKey: 'themes.dark', iconClass: 'dark-icon' }
   ];
 </script>
 
@@ -21,13 +21,13 @@
   type="single"
   value={appState.theme}
   onValueChange={(value) => value && handleThemeChange(value as Theme)}
-  aria-label="Theme"
+  aria-label={appState.t('labels.theme')}
 >
   {#each themes as theme (theme.value)}
     <ToggleGroup.Item
       value={theme.value}
-      aria-label={theme.label}
-      title={theme.label}
+      aria-label={appState.t(theme.labelKey)}
+      title={appState.t(theme.labelKey)}
       class={appState.theme === theme.value ? 'selected' : undefined}
     >
       <div class={theme.iconClass}></div>

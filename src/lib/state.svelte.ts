@@ -1,10 +1,12 @@
 import { getContext, setContext } from 'svelte';
 import { asset } from '$app/paths';
 import type { Bookmark, Folder, Theme } from './types';
+import { defaultLanguage, isLanguage, translate, type Language } from '$lib/i18n';
 
 export class AppState {
   // Theme State
   theme = $state<Theme>('auto');
+  language = $state<Language>(defaultLanguage);
   isSidebarCollapsed = $state<boolean>(false);
 
   // Bookmark State
@@ -20,6 +22,10 @@ export class AppState {
       if (savedTheme) {
         this.theme = savedTheme;
       }
+
+      const savedLanguage = localStorage.getItem('language');
+      this.language = isLanguage(savedLanguage) ? savedLanguage : this.getBrowserLanguage();
+      this.applyLanguage(this.language);
 
       this.isSidebarCollapsed = window.innerWidth < 1280;
       window.addEventListener('resize', () => {
@@ -52,6 +58,31 @@ export class AppState {
     if (typeof window !== 'undefined') {
       localStorage.setItem('theme', newTheme);
       this.applyTheme(newTheme);
+    }
+  }
+
+  setLanguage(newLanguage: Language) {
+    this.language = newLanguage;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', newLanguage);
+      this.applyLanguage(newLanguage);
+    }
+  }
+
+  t(key: Parameters<typeof translate>[1]) {
+    return translate(this.language, key);
+  }
+
+  private getBrowserLanguage(): Language {
+    if (typeof navigator === 'undefined') return defaultLanguage;
+
+    const browserLanguage = navigator.language.split('-')[0];
+    return isLanguage(browserLanguage) ? browserLanguage : defaultLanguage;
+  }
+
+  private applyLanguage(language: Language) {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = language;
     }
   }
 
